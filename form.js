@@ -180,6 +180,7 @@ function validatePhone(phone) {
 
 function modalClose() {
   modalcontainer.style.display = "none";
+  buttonModalOpen.style.display = "block";
 }
 
 function modalOpen() {
