@@ -68,4 +68,22 @@ async function getData() {
   }
   
   main();
-  
+  // add post
+const result = document.querySelector('.result');
+const authorname = document.querySelector('.author');
+const btn = document.querySelector('.btn');
+const comment = document.querySelector('.comment');
+
+
+document.addEventListener("DOMContentLoaded" ,function(event){
+    let name=localStorage.getItem('user');
+    obj = JSON.parse(name);
+    if(name!=null){
+        authorname.innerHTML = obj.firstname;
+    }
+    });
+
+btn.addEventListener('click',function showMessage(){
+result.innerHTML= obj.firstname+":"+comment.value
+localStorage.setItem(obj.firstname+new Date(),comment.value)
+})
