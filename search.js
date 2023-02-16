@@ -1,21 +1,4 @@
-class User{
-    constructor(id, name, password){
-        this.id = id;
-        this.name = name;
-        this.password = password;
-    }
-}
-
-class Post{
-    constructor(id, userId, title, body){
-        this.id = id;
-        this.userId = userId;
-        this.title = title;
-        this.body = body;
-    }
-}
-
-async function searchPosts(){
+function searchPosts(){
     clearPostList();
 
     const searchText = document.querySelector(".header-search__input").value;
