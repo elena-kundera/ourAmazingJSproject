@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="assets/normalize.css" rel="stylesheet" />
     <link href="assets/form.css" rel="stylesheet" />
+    <link href="assets/search.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/style.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body class="container">
     <div id="modalcontainer">
       <div class="modal">
         <div class="modal-content">
@@ -119,6 +120,16 @@
       </div>
     </div>
 
+    <!-- Шапка -->
+    <header class="header">
+    <!-- Форма поиска -->
+    <form class="header-search">
+      <input class="header-search__input" placeholder="Введите заголовок...">
+      <button class="header-search__button">Найти</button>
+      <button class="header-search__cancel">Отменить поиск</button>
+    </form>
+  </header>
+  
     <div id="postsContainer">
       <div id="posts" class="posts"></div>
       <div id="pagination" class="pagination"></div>
@@ -132,5 +143,6 @@
 
     <script src="script.js"></script>
     <script src="form.js"></script>
+    <script src="search.js"></script>
   </body>
 </html>
