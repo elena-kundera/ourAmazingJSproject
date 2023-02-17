@@ -69,3 +69,34 @@ async function getData() {
   
   main();
   
+//const result = document.querySelector('.result');
+////const authorname = document.querySelector('.author');
+const btn = document.querySelector('.btn');
+const comment = document.querySelector('.comment');
+  
+  
+document.addEventListener("DOMContentLoaded" ,function(event){
+      let name=localStorage.getItem('user');
+      obj = JSON.parse(name);
+      const author = document.createElement("div");
+      if(name!=null){
+          author.innerText =`Пользователь:${obj.firstname}`;
+          //authorname.innerHTML = obj.firstname;
+      }
+      author.appendChild(author);
+      comment.appendChild(comment);
+      });
+  
+  btn.addEventListener('click',function showMessage(){})
+   //class comment {
+     // constructor(options) {
+      //  this.Date= options.Date; 
+       // this.author = options.author;
+       // this.text=options.text
+      //}}
+    //let comment= new Comment({
+
+   // });
+  //result.innerHTML= obj.firstname+":"+comment.value
+  localStorage.setItem()//obj.firstname+new Date(),comment.value
+  

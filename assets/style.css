@@ -18,6 +18,12 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.commentsContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /* .post_body {
  СТИЛИ ДЛЯ ТЕЛА ПОСТА
@@ -51,3 +57,5 @@ body {
   font-weight: 800;
   color: rgb(109, 1, 139);
 }
+
+
