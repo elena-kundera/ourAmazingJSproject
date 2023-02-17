@@ -1,3 +1,5 @@
+let postList = [];
+
 async function getData() {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const data = await response.json();
@@ -5,7 +7,7 @@ async function getData() {
   }
   
   async function main() {
-    const postsData = await getData();
+    postList = await getData();
     let currentPage = 1;
     let rows = 7;
   
@@ -52,7 +54,7 @@ async function getData() {
   
       liEl.addEventListener('click', () => {
         currentPage = page
-        displayList(postsData, rows, currentPage)
+        displayList(postList, rows, currentPage)
   
         let currentItemLi = document.querySelector('li.pagination__item--active');
         currentItemLi.classList.remove('pagination__item--active');
@@ -63,9 +65,11 @@ async function getData() {
       return liEl;
     }
   
-    displayList(postsData, rows, currentPage);
-    displayPagination(postsData, rows);
+    displayList(postList, rows, currentPage);
+    displayPagination(postList, rows);
   }
   
   main();
+
+
   
