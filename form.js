@@ -10,19 +10,23 @@ const month = document.querySelector("#month");
 const year = document.querySelector("#year");
 const phone = document.querySelector("#phone");
 const fields = document.querySelectorAll(".field");
-
+const username = document.querySelector("#username");
+const usernameBlock = document.querySelector(".username-block");
 const buttonModalOpen = document.querySelector(".buttonModalOpen");
 const buttonRegistration = document.querySelector(".buttonRegistration");
 const buttonAddPost = document.querySelector(".buttonAddPost");
 
 const modalcontainer = document.querySelector("#modalcontainer");
+let userData = localStorage.getItem("user");
 
 document.addEventListener("DOMContentLoaded", function () {
-  let userData = localStorage.getItem("user");
   if (userData !== null) {
-    console.log(JSON.parse(userData).firstname);
+    username.innerHTML = JSON.parse(userData).firstname;
+    buttonAddPost.style.display = "block";
+    buttonModalOpen.style.display = "none";
+  } else {
+    usernameBlock.style.display = "none";
   }
-  firstname.focus();
 });
 
 buttonRegistration.onclick = function (event) {
