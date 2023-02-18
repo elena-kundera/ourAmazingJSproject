@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="assets/normalize.css" rel="stylesheet" />
     <link href="assets/form.css" rel="stylesheet" />
-    <link href="assets/search.css" rel="stylesheet"/>
-    <link href="assets/style.css" rel="stylesheet"/>
+    <link href="assets/search.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
     <title>Document</title>
   </head>
   <body clsaa="container">
@@ -120,19 +120,23 @@
       </div>
     </div>
 
+    <div class="username-block">
+      <div id="username"></div>
+    </div>
+
     <!-- Шапка -->
     <header class="header">
       <!-- Форма поиска -->
       <form class="header-search">
-        <input class="header-search__input" placeholder="Введите заголовок...">
+        <input
+          class="header-search__input"
+          placeholder="Введите заголовок..."
+        />
         <button class="header-search__button">Найти</button>
         <button class="header-search__cancel">Отменить поиск</button>
       </form>
     </header>
 
-    <div class="username-block">
-      <div id="username"></div>
-    </div>
     <div id="postsContainer">
       <div id="posts" class="posts"></div>
       <div id="pagination" class="pagination"></div>
