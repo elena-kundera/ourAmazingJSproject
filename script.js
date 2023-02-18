@@ -69,34 +69,41 @@ async function getData() {
   
   main();
   
-//const result = document.querySelector('.result');
-////const authorname = document.querySelector('.author');
-const btn = document.querySelector('.btn');
-const comment = document.querySelector('.comment');
-  
-  
 document.addEventListener("DOMContentLoaded" ,function(event){
       let name=localStorage.getItem('user');
-      obj = JSON.parse(name);
-      const author = document.createElement("div");
+      obj = JSON.parse(name)
+      let author = document.createElement("div");
       if(name!=null){
           author.innerText =`Пользователь:${obj.firstname}`;
-          //authorname.innerHTML = obj.firstname;
+          document.getElementById("author").appendChild(author);
       }
-      author.appendChild(author);
-      comment.appendChild(comment);
       });
-  
-  btn.addEventListener('click',function showMessage(){})
-   //class comment {
-     // constructor(options) {
-      //  this.Date= options.Date; 
-       // this.author = options.author;
-       // this.text=options.text
-      //}}
-    //let comment= new Comment({
+const btn = document.querySelector('.btn');
+class Comment2 {
+     constructor(options) {
+     this.date= options.date; 
+     this.author = options.author;
+     this.text=options.text
+    }
+    LSitem(){
+      localStorage.setItem(this.author+this.date,this.text)
+    }
+  }
+btn.addEventListener('click',function showMessage(){
+    let commentinput=document.getElementById("commentinput").value
+    let comment2= new Comment2({
+      author:obj.firstname,
+      date: new Date(),
+      text:commentinput
+    });
+    comment2.LSitem()
+    let result = document.createElement("div");
+    let varr=comment2.author+comment2.date
+    let fullcomment=localStorage.getItem(varr);
+    result.innerText =`Пользователь:${comment2.author}
+                       Дата:${comment2.date}
+                       ${fullcomment}`;
+    document.getElementById("result").appendChild(result);
+  })
 
-   // });
-  //result.innerHTML= obj.firstname+":"+comment.value
-  localStorage.setItem()//obj.firstname+new Date(),comment.value
   
