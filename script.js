@@ -5,7 +5,10 @@ async function getData() {
   }
   
   async function main() {
-    const postsData = await getData();  //ТА САМАЯ НУЖНАЯ ПЕРЕМЕННАЯ С МАССИВОМ
+
+    const postsData = await getData();
+    localStorage.setItem('postList', JSON.stringify(postsData));
+
     let currentPage = 1;
     let rows = 7;
   
@@ -99,4 +102,4 @@ async function getData() {
   }
 
 
-  console.log(getRandomDate());
+ 

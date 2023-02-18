@@ -1,24 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/normalize.css" rel="stylesheet" />
+    <link href="assets/form.css" rel="stylesheet" />
+    <link href="assets/search.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body clsaa="container">
+    <div id="modalcontainer">
+      <div class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="heading">Зарегистрируйтесь</h1>
+            <div id="close" onclick="modalClose()">x</div>
+          </div>
+          <div class="modal-body">
+            <form name="form" novalidate>
+              <p class="text">Как Вас зовут?</p>
+              <div class="blocks">
+                <div class="blocks-position">
+                  <label for="firstname" autofocus></label>
+                  <input
+                    type="text"
+                    id="firstname"
+                    placeholder="Имя"
+                    class="field"
+                    required
+                  />
+                </div>
+                <div class="blocks-position">
+                  <label for="lastname"></label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    placeholder="Фамилия"
+                    class="field"
+                    required
+                  />
+                </div>
+              </div>
+              <p class="text">Адрес электронной почты</p>
+              <label for="mail"></label>
+              <input type="email" id="mail" class="field" required /><br />
+              <p class="text">Придумайте пароль</p>
+              <input
+                type="password"
+                id="firstpassword"
+                class="field"
+                required
+              />
+              <p class="text">Подтвердите пароль</p>
+              <input
+                type="password"
+                id="secondpassword"
+                class="field"
+                required
+              />
+              <p class="text">Дата рождения</p>
+              <div class="blocks">
+                <div class="blocks-position">
+                  <label for="day"></label>
+                  <input
+                    type="number"
+                    step="1"
+                    min="1"
+                    max="31"
+                    id="day"
+                    placeholder="день"
+                    class="field"
+                  />
+                </div>
+                <div class="blocks-position">
+                  <select class="list-text field" name="month" id="month">
+                    <option value="" selected>месяц</option>
+                    <option value="january">Январь</option>
+                    <option value="february">Февраль</option>
+                    <option value="march">Март</option>
+                    <option value="april">Апрель</option>
+                    <option value="may">Май</option>
+                    <option value="june">Июнь</option>
+                    <option value="july">Июль</option>
+                    <option value="august">Август</option>
+                    <option value="september">Сентябрь</option>
+                    <option value="october">Октябрь</option>
+                    <option value="november">Ноябрь</option>
+                    <option value="december">Декабрь</option>
+                  </select>
+                </div>
+                <div class="blocks-position">
+                  <label for="year"></label>
+                  <input
+                    type="text"
+                    id="year"
+                    placeholder="год"
+                    maxlength="4"
+                    class="field"
+                  />
+                </div>
+              </div>
+              <p class="text">Мобильный телефон</p>
+              <label for="phone"></label>
+              <input
+                type="text"
+                id="phone"
+                minlength="15"
+                maxlength="30"
+                class="field"
+              />
+              <button type="submit" class="buttonRegistration">
+                Зарегистрироваться
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="username-block">
+      <div id="username"></div>
+    </div>
 
-<div id="postsContainer">
-    <div id="posts" class="posts"></div>
-    <div id="pagination" class="pagination"></div>
+    <!-- Шапка -->
+    <header class="header">
+      <!-- Форма поиска -->
+      <form class="header-search">
+        <input
+          class="header-search__input"
+          placeholder="Введите заголовок..."
+        />
+        <button class="header-search__button">Найти</button>
+        <button class="header-search__cancel">Отменить поиск</button>
+      </form>
+    </header>
 
-</div>
-
-
+    <div id="postsContainer">
+      <div id="posts" class="posts"></div>
+      <div id="pagination" class="pagination"></div>
+    </div>
+    <button type="button" class="buttonModalOpen" onclick="modalOpen ( );">
+      Регистрация
+    </button>
+    <button type="button" class="buttonAddPost" onclick="addPost ( );">
+      Добавить пост
+    </button>
 
     <script src="script.js"></script>
-</body>
+    <script src="form.js"></script>
+    <script src="search.js"></script>
+  </body>
 </html>
