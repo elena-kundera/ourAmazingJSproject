@@ -25,12 +25,15 @@ async function getData() {
         const postEl = document.createElement("div");
         const postElBody = document.createElement("div");
         const postDate = document.createElement("div");
+        const postUser = document.createElement("div");
         postEl.classList.add("post");
         postEl.innerText = "Тема:   " + `${el.title}\r\n`;
         postElBody.classList.add("post_body");
         postElBody.innerText = `${el.body}`;
         postDate.innerText = getRandomDate();
+        postUser.innerText = `${el.id}`;
         postsEl.appendChild(postDate);
+        postsEl.appendChild(postUser);
         postsEl.appendChild(postEl);
         postsEl.appendChild(postElBody);
       })
@@ -87,7 +90,7 @@ async function getData() {
     let end = new Date();
     end.setDate(11);
     end.setMonth(1);
-    end.setFullYear(2022);
+    end.setFullYear(2023);
     let endTime = end.getTime();
     
     let randomDate = new Date();
