@@ -68,7 +68,7 @@ async function getData() {
   }
   
   main();
-  
+
 document.addEventListener("DOMContentLoaded" ,function(event){
       let name=localStorage.getItem('user');
       obj = JSON.parse(name)
@@ -90,10 +90,11 @@ class Comment2 {
     }
   }
 btn.addEventListener('click',function showMessage(){
-    let commentinput=document.getElementById("commentinput").value
+    let commentinput=document.getElementById("commentinput").value;
+    let today= new Date;
     let comment2= new Comment2({
       author:obj.firstname,
-      date: new Date(),
+      date: today.toLocaleDateString(),
       text:commentinput
     });
     comment2.LSitem()
@@ -104,6 +105,5 @@ btn.addEventListener('click',function showMessage(){
                        Дата:${comment2.date}
                        ${fullcomment}`;
     document.getElementById("result").appendChild(result);
+    document.querySelector("#posts").appendChild(result)
   })
-
-  
