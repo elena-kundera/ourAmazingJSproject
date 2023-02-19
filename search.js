@@ -28,7 +28,6 @@ function searchPosts(){
 function printSearchResult(posts){
     if (posts.length > 0){
         // Здесь нужно выводить посты с пагинацией
-        let posts = JSON.localStorage.getItem('postList');
         let currentPage = 1;
         let rows = 7;
         
@@ -48,8 +47,11 @@ function printSearchResult(posts){
 
 function clearPostList()
 {
-    let postsContainer = document.querySelector('.container-posts');
+    let postsContainer = document.querySelector('.posts');
     postsContainer.innerHTML = '';
+
+    let pagination = document.querySelector('.pagination');
+    pagination.innerHTML = '';
 }
 
 function cancelSearch(){
@@ -60,6 +62,3 @@ document.querySelector('.header-search__button').addEventListener('click', searc
 document.querySelector('.header-search__cancel').addEventListener('click', cancelSearch);
 
 
-
-//displayList(postsData, rows, currentPage);
-  //  displayPagination(postsData, rows, currentPage);
