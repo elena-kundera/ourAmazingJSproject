@@ -27,9 +27,10 @@ function searchPosts(){
 
 function printSearchResult(posts){
     if (posts.length > 0){
-        // Здесь нужно выводить посты с пагинацией
-        let currentPage = 1;
-        let rows = 7;
+        clearPostList();
+        // Выводим посты с пагинацией
+        const currentPage = 1;
+        const rows = 7;
         
         displayList(posts, rows, currentPage);
         displayPagination(posts, rows, currentPage);
@@ -52,10 +53,29 @@ function clearPostList()
 
     let pagination = document.querySelector('.pagination');
     pagination.innerHTML = '';
+
+    let placeholder = document.querySelector('.container-posts-placeholder');
+    if (placeholder != null){
+        let postsContainer = document.querySelector('.container-posts');
+        postsContainer.removeChild(placeholder);
+    }
 }
 
 function cancelSearch(){
-    // Здесь нужно выводить посты с пагинацией
+    // Очищаем поле поиска
+    const searchField = document.querySelector('.header-search__input');
+    searchField.value = '';
+
+    // Убираем старый результат
+    clearPostList();
+
+    // Показываем все посты
+    const posts = JSON.parse(localStorage.getItem('postList'));
+    const currentPage = 1;
+    const rows = 7;
+        
+    displayList(posts, rows, currentPage);
+    displayPagination(posts, rows, currentPage);
 }
 
 document.querySelector('.header-search__button').addEventListener('click', searchPosts);
