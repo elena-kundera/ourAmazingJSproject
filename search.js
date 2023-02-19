@@ -1,4 +1,4 @@
-async function searchPosts(){
+function searchPosts(){
     const searchField = document.querySelector('.header-search__input');
     let searchText = searchField.value;
     searchText = searchText.trim();
@@ -7,7 +7,7 @@ async function searchPosts(){
         clearPostList();
         let resultPostList = [];
         
-        const posts = await JSON.parse(localStorage.getItem('postList'));
+        const posts = JSON.parse(localStorage.getItem('postList'));
         posts.forEach(post => {
             if (post.title.toLowerCase().includes(searchText)){
                 resultPostList.push(post);
