@@ -134,12 +134,12 @@
           class="header-search__input"
           placeholder="Введите заголовок..."
         />
-        <button class="header-search__button">Найти</button>
-        <button class="header-search__cancel">Отменить поиск</button>
+        <button class="header-search__button" onclick="event.preventDefault()">Найти</button>
+        <button class="header-search__cancel" onclick="event.preventDefault()">Отменить поиск</button>
       </form>
     </header>
 
-    <div id="postsContainer">
+    <div id="postsContainer" class="container-posts">
       <div id="posts" class="posts"></div>
       <div id="pagination" class="pagination"></div>
     </div>
@@ -153,5 +153,6 @@
     <script src="script.js"></script>
     <script src="form.js"></script>
     <script src="search.js"></script>
+    <script src="print.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-function searchPosts(){
+async function searchPosts(){
     const searchField = document.querySelector('.header-search__input');
     let searchText = searchField.value;
     searchText = searchText.trim();
@@ -7,7 +7,7 @@ function searchPosts(){
         clearPostList();
         let resultPostList = [];
         
-        const posts = JSON.parse(localStorage.getItem('postList'));
+        const posts = await JSON.parse(localStorage.getItem('postList'));
         posts.forEach(post => {
             if (post.title.toLowerCase().includes(searchText)){
                 resultPostList.push(post);
@@ -28,7 +28,7 @@ function searchPosts(){
 function printSearchResult(posts){
     if (posts.length > 0){
         // Здесь нужно выводить посты с пагинацией
-        const posts = JSON.localStorage.getItem('postList');
+        let posts = JSON.localStorage.getItem('postList');
         let currentPage = 1;
         let rows = 7;
         
