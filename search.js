@@ -28,7 +28,7 @@ function searchPosts(){
 function printSearchResult(posts){
     if (posts.length > 0){
         // Здесь нужно выводить посты с пагинацией
-        const posts = JSON.localStorage.getItem('postList');
+        let posts = JSON.localStorage.getItem('postList');
         let currentPage = 1;
         let rows = 7;
         
