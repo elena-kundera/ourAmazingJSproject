@@ -129,14 +129,16 @@
     <!-- Шапка -->
     <header class="header">
       <!-- Форма поиска -->
-      <form class="header-search">
-        <input
-          class="header-search__input"
-          placeholder="Введите заголовок..."
-        />
-        <button class="header-search__button" onclick="event.preventDefault()">Найти</button>
-        <button class="header-search__cancel" onclick="event.preventDefault()">Отменить поиск</button>
-      </form>
+      <div class="header-search">
+        <div class="header-search-field">
+          <input
+            class="header-search__input"
+            placeholder="Введите заголовок или текст поста..."
+          />
+          <div class="header-search__cancel"></div>
+        </div>
+        <button class="header-search__button">Найти</button>
+      </div>
     </header>
 
     <div id="postsContainer" class="container-posts">
