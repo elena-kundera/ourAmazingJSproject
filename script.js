@@ -7,8 +7,14 @@ async function getData() {
 }
 
 async function main() {
-  const postsData = await getData();
-  localStorage.setItem("postList", JSON.stringify(postsData));
+  let postsData = await getData();
+  const currentUserPostList = JSON.parse(localStorage.getItem("postList"));
+  if (currentUserPostList != null){
+    localStorage.setItem("postList", JSON.stringify(postsData));
+  }
+  else{
+    postsData = currentUserPostList;
+  }
 
   let currentPage = 1;
   let rows = 7;
