@@ -46,3 +46,41 @@ function getRandomDate() {
 function postDetailsClose() {
   postDetails.style.display = "none";
 }
+document.addEventListener("DOMContentLoaded" ,function(event){
+  let name=localStorage.getItem('user');
+  obj = JSON.parse(name)
+  let author = document.createElement("div");
+  if(name!=null){
+      author.innerText =`Пользователь:${obj.firstname}`;
+      document.getElementById("author").appendChild(author);
+  }
+  });
+const btn = document.querySelector('.btn');
+class Comment2 {
+ constructor(options) {
+ this.date= options.date; 
+ this.author = options.author;
+ this.text=options.text
+}
+LSitem(){
+  localStorage.setItem(this.author+this.date,this.text)
+}
+}
+btn.addEventListener('click',function showMessage(){
+let commentinput=document.getElementById("commentinput").value;
+let today= new Date;
+let comment2= new Comment2({
+  author:obj.firstname,
+  date: today.toLocaleDateString(),
+  text:commentinput
+});
+comment2.LSitem()
+let result = document.createElement("div");
+let varr=comment2.author+comment2.date
+let fullcomment=localStorage.getItem(varr);
+result.innerText =`Пользователь:${comment2.author}
+                   Дата:${comment2.date}
+                   ${fullcomment}`;
+document.getElementById("result").appendChild(result);
+document.querySelector("#posts").appendChild(result)
+})
