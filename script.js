@@ -7,13 +7,8 @@ async function getData() {
 }
 
 async function main() {
-  let postsData = await getData();
-  const currentUserPostList = JSON.parse(localStorage.getItem("postList"));
-  if (currentUserPostList != null) {
-    localStorage.setItem("postList", JSON.stringify(postsData));
-  } else {
-    postsData = currentUserPostList;
-  }
+  const postsData = await getData();
+  localStorage.setItem("postList", JSON.stringify(postsData));
 
   let currentPage = 1;
   let rows = 7;
@@ -106,10 +101,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 const btn = document.querySelector("#btn");
 class Comment2 {
   constructor(options) {
-    this.userId = options.userId;
-    this.Id = options.Id;
+    this.date = options.date;
+    this.author = options.author;
     this.title = options.title;
-    this.body = options.body;
+    this.text = options.text;
   }
 }
 
@@ -122,10 +117,10 @@ btn.addEventListener("click", function showMessage() {
   let today = new Date();
 
   let comment2 = new Comment2({
-    userId: obj.firstname,
-    Id: today.toLocaleDateString(),
+    author: obj.firstname,
+    date: today.toLocaleDateString(),
     title: titleСomment,
-    body: commentinput,
+    text: commentinput,
   });
 
   commentsBlock.push(comment2);
@@ -153,15 +148,15 @@ btn.addEventListener("click", function showMessage() {
   more.setAttribute("class", "button_more");
   more.innerText = "Подробнее";
   more.onclick = function () {
-    postDetails.innerHTML = `<div class="postDetailsBlock"><div class="close" onclick="postDetailsClose()">x</div><h2 class="postDetailsHeader">Тема: ${comment2.title}</h2><p class="postDetailsBody">Пост: ${comment2.body}</p></div>`;
+    postDetails.innerHTML = `<div class="postDetailsBlock"><div class="close" onclick="postDetailsClose()">x</div><h2 class="postDetailsHeader">Тема: ${comment2.title}</h2><p class="postDetailsBody">Пост: ${commentinput}</p></div>`;
     postDetails.style.display = "block";
   };
   result.appendChild(more);
 
-  newPostsDate.innerText = "Дата: " + comment2.Id;
-  newPostsAuthor.innerText = "Автор: " + comment2.userId;
+  newPostsDate.innerText = "Дата: " + comment2.date;
+  newPostsAuthor.innerText = "Автор: " + comment2.author;
   newPostsTitle.innerText = "Тема: " + comment2.title;
-  newPostsText.innerText = "Пост: " + comment2.body;
+  newPostsText.innerText = "Пост: " + commentinput;
 
   newPosts.appendChild(result);
 
