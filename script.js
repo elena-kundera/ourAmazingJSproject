@@ -7,6 +7,16 @@ async function getData() {
 }
 
 async function main() {
+  // Если список не отображается, закомментируйте этот код:
+  /*let postsData = await getData();
+  const currentUserPosts = JSON.parse(localStorage.getItem("postList"));
+  if (currentUserPosts != null){
+    postsData = currentUserPosts;
+  }
+  else{
+    localStorage.setItem("postList", JSON.stringify(postsData));
+  }*/
+  // и раскомментируйте этот:
   const postsData = await getData();
   localStorage.setItem("postList", JSON.stringify(postsData));
 
@@ -90,7 +100,7 @@ btn.addEventListener("click", function showMessage() {
     userId: obj.firstname,
   });
 
-  let result = document.createElement("div");
+  /*let result = document.createElement("div");
   result.setAttribute("class", "posts");
   document.getElementById("result").appendChild(result);
 
@@ -125,9 +135,21 @@ btn.addEventListener("click", function showMessage() {
   newPosts.appendChild(result);
 
   document.getElementById("commentinput").value = "";
-  document.getElementById("titleСomment").value = "";
+  document.getElementById("titleСomment").value = "";*/
 
   let posts = JSON.parse(localStorage.getItem("postList"));
   posts.push(comment2);
   localStorage.setItem("postList", JSON.stringify(posts));
+  
+  // Очищаем таблицу
+  clearPostList();
+
+  // Задаем текущую страницу и количество строк
+  const currentPage = 1;
+  const rows = 7;
+  
+  // Выводим список 
+  displayList(posts, rows, currentPage);
+  displayPagination(posts, rows, currentPage);
+
 });
