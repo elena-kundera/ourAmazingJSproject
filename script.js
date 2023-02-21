@@ -7,16 +7,6 @@ async function getData() {
 }
 
 async function main() {
-  // Если список не отображается, закомментируйте этот код:
-  /*let postsData = await getData();
-  const currentUserPosts = JSON.parse(localStorage.getItem("postList"));
-  if (currentUserPosts != null){
-    postsData = currentUserPosts;
-  }
-  else{
-    localStorage.setItem("postList", JSON.stringify(postsData));
-  }*/
-  // и раскомментируйте этот:
   const postsData = await getData();
   localStorage.setItem("postList", JSON.stringify(postsData));
 
@@ -68,14 +58,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     author.innerText = `Автор: ${obj.firstname}`;
     document.getElementById("author").appendChild(author);
   }
-
-  //Выводит блок с новым сообщением, но main тоже выводит свой блок
-
-  // let posts = JSON.parse(localStorage.getItem("postList"));
-  // const currentPage = 1;
-  // const rows = 7;
-  // displayList(posts, rows, currentPage);
-  // displayPagination(posts, rows, currentPage);
 });
 
 const btn = document.querySelector("#btn");
@@ -99,43 +81,6 @@ btn.addEventListener("click", function showMessage() {
     title: titleСomment,
     userId: obj.firstname,
   });
-
-  /*let result = document.createElement("div");
-  result.setAttribute("class", "posts");
-  document.getElementById("result").appendChild(result);
-
-  const newPostsDate = document.createElement("div");
-  result.appendChild(newPostsDate);
-
-  const newPostsAuthor = document.createElement("div");
-  result.appendChild(newPostsAuthor);
-
-  const newPostsTitle = document.createElement("div");
-  newPostsTitle.setAttribute("class", "post");
-  result.appendChild(newPostsTitle);
-
-  const newPostsText = document.createElement("div");
-  newPostsText.setAttribute("class", "post_body");
-  result.appendChild(newPostsText);
-
-  const more = document.createElement("button");
-  more.setAttribute("class", "button_more");
-  more.innerText = "Подробнее";
-  more.onclick = function () {
-    postDetails.innerHTML = `<div class="postDetailsBlock"><div class="close" onclick="postDetailsClose()">x</div><h2 class="postDetailsHeader">Тема: ${comment2.title}</h2><p class="postDetailsBody">Пост: ${comment2.body}</p></div>`;
-    postDetails.style.display = "block";
-  };
-  result.appendChild(more);
-
-  newPostsDate.innerText = "Дата: " + comment2.id;
-  newPostsAuthor.innerText = "Автор: " + comment2.userId;
-  newPostsTitle.innerText = "Тема: " + comment2.title;
-  newPostsText.innerText = "Пост: " + comment2.body;
-
-  newPosts.appendChild(result);
-
-  document.getElementById("commentinput").value = "";
-  document.getElementById("titleСomment").value = "";*/
 
   let posts = JSON.parse(localStorage.getItem("postList"));
   posts.push(comment2);
