@@ -47,8 +47,6 @@ function postDetailsClose() {
   postDetails.style.display = "none";
 }
 
-const newPosts = document.querySelector("#newPosts");
-
 document.addEventListener("DOMContentLoaded", function (event) {
   const name = localStorage.getItem("user");
   obj = JSON.parse(name);
@@ -77,24 +75,26 @@ btn.addEventListener("click", function showMessage() {
 
   let comment2 = new Comment2({
     body: commentinput,
-    id: today.toLocaleDateString(),
+    id: obj.firstname,
     title: titleСomment,
-    userId: obj.firstname,
+    userId: today.toLocaleDateString(),
   });
 
   let posts = JSON.parse(localStorage.getItem("postList"));
   posts.push(comment2);
   localStorage.setItem("postList", JSON.stringify(posts));
-  
+
   // Очищаем таблицу
   clearPostList();
 
   // Задаем текущую страницу и количество строк
   const currentPage = 1;
   const rows = 7;
-  
-  // Выводим список 
+
+  // Выводим список
   displayList(posts, rows, currentPage);
   displayPagination(posts, rows, currentPage);
 
+  document.getElementById("commentinput").value = "";
+  document.getElementById("titleСomment").value = "";
 });

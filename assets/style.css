@@ -15,7 +15,7 @@ body {
 
 /* Таблица*/
 
-.container-posts{
+.container-posts {
   display: grid;
   background-color: #ffffff;
   grid-template-columns: 1fr;
@@ -32,18 +32,21 @@ body {
   padding: 10px;
   gap: 20px;
 }
-.commentsContainer{
+.commentsContainer {
   display: grid;
   grid-template-rows: 1fr;
   justify-content: center;
   margin: 10px auto;
   padding: 20px;
 }
-.result{
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr 3fr 1fr;
+
+#author,
+.titleСomment,
+.commentinput {
+  text-align: center;
 }
-.btn{
+
+.btn {
   padding: 5px;
   margin: 10px auto;
   background: rgb(209, 234, 209);
@@ -148,6 +151,7 @@ textarea:focus {
   opacity: 0.7;
   cursor: pointer;
 }
+
 @media (min-width: 768px) {
   .close {
     margin-top: 0;
