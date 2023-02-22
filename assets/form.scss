@@ -1,7 +1,4 @@
-$font: Arial, Helvetica, sans-serif;
-$mobile: 375px;
-$tablet: 768px;
-$desktop: 1280px;
+@import "_variables.scss";
 
 #modalcontainer {
   display: none;
@@ -16,7 +13,6 @@ $desktop: 1280px;
 .modal {
   max-width: 450px;
   margin: 10px;
-  font-family: $font;
   font-style: normal;
   z-index: 1;
 
@@ -72,9 +68,8 @@ $desktop: 1280px;
 .modal-content {
   display: flex;
   flex-direction: column;
-  background-color: oldlace;
   background: linear-gradient(to right, oldlace, rgb(245, 233, 211));
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: $border;
   border-radius: 0.3rem;
 }
 
@@ -109,8 +104,8 @@ input[type="number"],
   padding: 7px 10px;
   margin: 5px;
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  border: $border;
+  background: $white;
 }
 
 input[type="text"]:focus,
@@ -125,10 +120,9 @@ input[type="password"]:focus {
   display: block;
   padding: 10px 0;
   margin: 10px auto;
-  background: green;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: white;
-  font-family: $font;
+  background: $green;
+  border: $border;
+  color: $white;
   font-size: 14px;
   cursor: pointer;
 }
@@ -151,23 +145,8 @@ input[type="password"]:focus {
 }
 
 .errorMessage {
-  color: red;
+  color: $error;
   font-weight: 600;
   font-size: 12px;
   padding: 3px 10px;
-}
-
-.username-block {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#username {
-  padding: 6px;
-  margin: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
 }
