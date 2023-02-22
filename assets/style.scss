@@ -1,23 +1,24 @@
-@charset "UTF-8";
+@import "_variables.scss";
+
 body {
-  background-color: #f1f5f8;
-  font-family: "Open Sans", sans-serif;
+  background-color: $background-light;
+  font-family: $font;
 }
 
 .username-block {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#username {
-  padding: 6px;
-  margin: 10px;
-  font-size: 14px;
-  background-color: #f8f8f8;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
-}
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  #username {
+    padding: 6px;
+    margin: 10px;
+    font-size: 14px;
+    background-color: $background-field;
+    border: $border;
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+  }
 
 .container {
   max-width: 1200px;
@@ -31,7 +32,7 @@ body {
 
 .container-posts {
   display: grid;
-  background-color: #ffffff;
+  background-color: $white;
   grid-template-columns: 1fr;
   border-radius: 10px;
   padding: 10px;
@@ -39,7 +40,7 @@ body {
 
 .posts {
   display: grid;
-  background-color: #e3e3e3;
+  background-color: $background-dark;
   grid-template-columns: 1fr 1fr 2fr 3fr 1fr;
   margin: 10px;
   border-radius: 10px;
@@ -66,7 +67,7 @@ textarea {
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: $background-field;
   margin: 10px auto;
 }
 
@@ -98,7 +99,7 @@ textarea:focus {
 
 .pagination__item--active {
   font-weight: 800;
-  color: green;
+  color: $green;
 }
 
 #postDetails {
@@ -119,9 +120,8 @@ textarea:focus {
   align-items: center;
   background: linear-gradient(to right, oldlace, rgb(245, 233, 211));
   border-radius: 10px;
-}
-@media (min-width: 768px) {
-  .postDetailsBlock {
+
+  @media (min-width: $tablet) {
     margin: 15% 20%;
   }
 }
@@ -138,8 +138,8 @@ textarea:focus {
 .button_more {
   padding: 5px;
   margin: 10px auto;
-  background: rgb(209, 234, 209);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: $light-green;
+  border: $border;
   border-radius: 3px;
   font-size: 12px;
   cursor: pointer;
@@ -152,10 +152,9 @@ textarea:focus {
   font-weight: 700;
   opacity: 0.7;
   cursor: pointer;
-}
-@media (min-width: 768px) {
-  .close {
+
+  @media (min-width: $tablet) {
     margin-top: 0;
     margin-left: 130%;
   }
-}/*# sourceMappingURL=style.css.map */
+}

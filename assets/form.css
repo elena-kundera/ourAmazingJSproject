@@ -11,7 +11,6 @@
 .modal {
   max-width: 450px;
   margin: 10px;
-  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   z-index: 1;
 }
@@ -68,9 +67,8 @@
 .modal-content {
   display: flex;
   flex-direction: column;
-  background-color: oldlace;
   background: linear-gradient(to right, oldlace, rgb(245, 233, 211));
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0.3rem;
 }
 
@@ -107,7 +105,7 @@ input[type=number],
   margin: 5px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  background: #ffffff;
 }
 
 input[type=text]:focus,
@@ -124,8 +122,7 @@ input[type=password]:focus {
   margin: 10px auto;
   background: green;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
   font-size: 14px;
   cursor: pointer;
 }
@@ -153,19 +150,4 @@ input[type=password]:focus {
   font-weight: 600;
   font-size: 12px;
   padding: 3px 10px;
-}
-
-.username-block {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#username {
-  padding: 6px;
-  margin: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
 }/*# sourceMappingURL=form.css.map */
