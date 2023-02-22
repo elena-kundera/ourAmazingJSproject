@@ -14,7 +14,30 @@ function displayList(arrData, rowPerPage, page) {
     const postUser = document.createElement("div");
     const more = document.createElement("button");
     more.onclick = function () {
-      postDetails.innerHTML = `<div class="postDetailsBlock"><div class="close" onclick="postDetailsClose()">x</div><h2 class="postDetailsHeader">Тема: ${el.title}</h2><p class="postDetailsBody">${el.body}</p></div>`;
+      const postDetails = document.querySelector("#postDetails");
+      postDetails.innerHTML = "";
+      const close = document.createElement("div");
+      close.onclick = function () {
+        postDetails.style.display = "none";
+      };
+      close.innerText = "x";
+      close.classList.add("close");
+
+      const postDetailsBlock = document.createElement("div");
+      postDetailsBlock.setAttribute("class", "postDetailsBlock");
+      const postDetailsHeader = document.createElement("h2");
+      postDetailsHeader.setAttribute("class", "postDetailsHeader");
+      postDetailsHeader.innerText = `Тема: ${el.title}\r\n`;
+
+      const postDetailsBody = document.createElement("p");
+      postDetailsBody.setAttribute("class", "postDetailsBody");
+      postDetailsBody.innerText = `Пост: ${el.body}`;
+
+      postDetails.appendChild(postDetailsBlock);
+      postDetailsBlock.appendChild(close);
+      postDetailsBlock.appendChild(postDetailsHeader);
+      postDetailsBlock.appendChild(postDetailsBody);
+
       postDetails.style.display = "block";
     };
     postEl.classList.add("post");
