@@ -6,25 +6,39 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (min-width: 768px) and (max-width: 1280px) {
+  .header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+@media (min-width: 1280px) {
+  .header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 }
 
 .header-search {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   width: 90vw;
-  height: 20vh;
   padding: 2vw;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1280px) {
+  .header-search {
+    flex-direction: row;
+    padding-left: 40px;
+  }
+}
+@media (min-width: 1280px) {
   .header-search {
     flex-direction: row;
     width: 50vw;
-    height: 10vh;
-    padding-left: 40px;
   }
 }
 
@@ -40,8 +54,14 @@
 .header-search__input {
   width: 100%;
   height: 40px;
+  font-size: 80%;
   border: none;
   outline: none;
+}
+@media (min-width: 375px) {
+  .header-search__input {
+    font-size: 100%;
+  }
 }
 
 .container-posts-placeholder {
@@ -63,15 +83,25 @@
 }
 
 .header-search__button {
+  padding: 5px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .header-search__button {
+    padding: 0;
+  }
+}
+
+.header-search-button {
   width: 150px;
-  height: 50px;
+  height: 40px;
   background-color: #ffffff;
   border-bottom: 2px solid rgba(8, 10, 9, 0.768);
   border-radius: 5%;
   cursor: pointer;
 }
 @media (min-width: 768px) {
-  .header-search__button {
+  .header-search-button {
     width: 200px;
     height: 60px;
     border-radius: 7%;
