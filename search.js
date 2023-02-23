@@ -1,7 +1,10 @@
 function searchPosts(){
+    showCancelIcon();
     const searchField = document.querySelector('.header-search__input');
     let searchText = searchField.value;
     searchText = searchText.trim();
+
+    
 
     if (searchText != ''){
         clearPostList();
@@ -26,6 +29,22 @@ function searchPosts(){
     }
 }
 
+function showCancelIcon(){
+    const canselIcon = document.querySelector('.header-search__cancel');
+    const magnifierIcon = document.querySelector('.header-search__magnifier');
+
+    canselIcon.classList.remove('hidden-icon');
+    magnifierIcon.classList.add('hidden-icon');
+}
+
+function showMagnifierIcon(){
+    const canselIcon = document.querySelector('.header-search__cancel');
+    const magnifierIcon = document.querySelector('.header-search__magnifier');
+
+    magnifierIcon.classList.remove('hidden-icon');
+    canselIcon.classList.add('hidden-icon');
+}
+
 function printSearchResult(posts){
     if (posts.length > 0){
         clearPostList();
@@ -40,17 +59,17 @@ function printSearchResult(posts){
     else{
         // Если совпадений нет, показываем плейсхолдер
         clearPostList();
-        let placeholder = document.createElement('div');
+        const placeholder = document.createElement('div');
         placeholder.classList.add('container-posts-placeholder')
         placeholder.innerHTML = 'Посты не найдены';
-        let postsContainer = document.querySelector('.container-posts');
+        const postsContainer = document.querySelector('.container-posts');
         postsContainer.appendChild(placeholder);
     }
 }
 
 function clearPostList()
 {
-    let postContainer = document.querySelector('.container-posts');
+    const postContainer = document.querySelector('.container-posts');
 
     const posts = document.querySelector('.posts');
     if (posts != null){
@@ -69,14 +88,14 @@ function clearPostList()
 }
 
 function createPostContainerChilds(){
-    let postContainer = document.querySelector('.container-posts');
+    const postContainer = document.querySelector('.container-posts');
     createContainerElement(postContainer, 'posts');
     createContainerElement(postContainer, 'pagination');
 
 }
 
 function createContainerElement(container, childName){
-    let child = document.createElement('div');
+    const child = document.createElement('div');
     child.classList.add(childName);
     child.setAttribute('id', childName);
     container.appendChild(child);
@@ -89,6 +108,7 @@ function cancelSearch(){
 
     // Убираем старый результат
     clearPostList();
+    showMagnifierIcon();
 
     // Показываем все посты
     const posts = JSON.parse(localStorage.getItem('postList'));
