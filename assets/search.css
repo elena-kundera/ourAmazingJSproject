@@ -75,9 +75,20 @@
 .header-search__cancel {
   position: absolute;
   top: 30%;
-  right: 10px;
+  right: 20px;
   width: 30px;
   height: 30px;
-  background: url(images/cancel_24.svg) no-repeat;
   cursor: pointer;
+}
+
+.header-search__magnifier {
+  position: absolute;
+  top: 30%;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.hidden-icon {
+  visibility: hidden;
 }/*# sourceMappingURL=search.css.map */
