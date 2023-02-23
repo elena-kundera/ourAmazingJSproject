@@ -92,6 +92,7 @@ btn.addEventListener("click", function showMessage() {
   const rows = 7;
 
   // Выводим список
+  createPostContainerChilds();   
   displayList(posts, rows, currentPage);
   displayPagination(posts, rows, currentPage);
 
