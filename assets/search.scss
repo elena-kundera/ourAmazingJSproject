@@ -84,27 +84,4 @@
   cursor: pointer;
 }
 
-.header-search__button {
-  padding: 5px;
-  text-align: center;
 
-  @media (min-width: $tablet) {
-    padding: 0;
-  }
-}
-
-.header-search-button {
-  width: 150px;
-  height: 40px;
-  background-color: $white;
-  border-bottom: $searchBorders;
-  border-radius: 5%;
-
-  cursor: pointer;
-
-  @media (min-width: $tablet) {
-    width: 200px;
-    height: 60px;
-    border-radius: 7%;
-  }
-}
