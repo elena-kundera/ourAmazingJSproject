@@ -170,7 +170,7 @@ function validateEmail(email) {
 
 function validatePhone(phone) {
   if (phone.value !== "") {
-    let phoneFormat = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
+    let phoneFormat = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
     if (phone.value.match(phoneFormat)) {
       phone.style.border = "green solid 1px";
       return true;
