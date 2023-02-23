@@ -22,6 +22,7 @@ function searchPosts(){
 
     else{
         searchField.value = '';
+        cancelSearch();
     }
 }
 
@@ -99,7 +100,11 @@ function cancelSearch(){
     displayPagination(posts, rows, currentPage);
 }
 
-document.querySelector('.header-search__button').addEventListener('click', searchPosts);
+
 document.querySelector('.header-search__cancel').addEventListener('click', cancelSearch);
+
+const searchInput = document.querySelector('.header-search__input');
+searchInput.addEventListener('change', searchPosts);
+searchInput.addEventListener('keyup', searchPosts);
 
 

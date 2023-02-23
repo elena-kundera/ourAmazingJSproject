@@ -80,30 +80,4 @@
   height: 30px;
   background: url(images/cancel_24.svg) no-repeat;
   cursor: pointer;
-}
-
-.header-search__button {
-  padding: 5px;
-  text-align: center;
-}
-@media (min-width: 768px) {
-  .header-search__button {
-    padding: 0;
-  }
-}
-
-.header-search-button {
-  width: 150px;
-  height: 40px;
-  background-color: #ffffff;
-  border-bottom: 2px solid rgba(8, 10, 9, 0.768);
-  border-radius: 5%;
-  cursor: pointer;
-}
-@media (min-width: 768px) {
-  .header-search-button {
-    width: 200px;
-    height: 60px;
-    border-radius: 7%;
-  }
 }/*# sourceMappingURL=search.css.map */
