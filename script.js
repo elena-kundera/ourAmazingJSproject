@@ -87,6 +87,9 @@ btn.addEventListener("click", function showMessage() {
   // Очищаем таблицу
   clearPostList();
 
+  // Очищаем поле поиска
+  clearSearchInput();
+
   // Задаем текущую страницу и количество строк
   const currentPage = 1;
   const rows = 7;
