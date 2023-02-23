@@ -32,6 +32,7 @@ function printSearchResult(posts){
         const currentPage = 1;
         const rows = 7;
         
+        createPostContainerChilds();  
         displayList(posts, rows, currentPage);
         displayPagination(posts, rows, currentPage);
     }
@@ -48,17 +49,36 @@ function printSearchResult(posts){
 
 function clearPostList()
 {
-    let postsContainer = document.querySelector('.posts');
-    postsContainer.innerHTML = '';
+    let postContainer = document.querySelector('.container-posts');
 
-    let pagination = document.querySelector('.pagination');
-    pagination.innerHTML = '';
-
-    let placeholder = document.querySelector('.container-posts-placeholder');
-    if (placeholder != null){
-        let postsContainer = document.querySelector('.container-posts');
-        postsContainer.removeChild(placeholder);
+    const posts = document.querySelector('.posts');
+    if (posts != null){
+        postContainer.removeChild(posts);
     }
+
+    const pagination = document.querySelector('.pagination');
+    if (pagination != null){
+        postContainer.removeChild(pagination);
+    }
+
+    const placeholder = document.querySelector('.container-posts-placeholder');
+    if (placeholder != null){
+        postContainer.removeChild(placeholder);
+    }
+}
+
+function createPostContainerChilds(){
+    let postContainer = document.querySelector('.container-posts');
+    createContainerElement(postContainer, 'posts');
+    createContainerElement(postContainer, 'pagination');
+
+}
+
+function createContainerElement(container, childName){
+    let child = document.createElement('div');
+    child.classList.add(childName);
+    child.setAttribute('id', childName);
+    container.appendChild(child);
 }
 
 function cancelSearch(){
@@ -73,7 +93,8 @@ function cancelSearch(){
     const posts = JSON.parse(localStorage.getItem('postList'));
     const currentPage = 1;
     const rows = 7;
-        
+
+    createPostContainerChilds();    
     displayList(posts, rows, currentPage);
     displayPagination(posts, rows, currentPage);
 }
