@@ -25,6 +25,8 @@ function displayList(arrData, rowPerPage, page) {
 
       const postDetailsBlock = document.createElement("div");
       postDetailsBlock.setAttribute("class", "postDetailsBlock");
+      const postDetailsContent = document.createElement("div");
+      postDetailsContent.setAttribute("class", "postDetailsContent");
       const postDetailsHeader = document.createElement("h2");
       postDetailsHeader.setAttribute("class", "postDetailsHeader");
       postDetailsHeader.innerText = `Тема: ${el.title}\r\n`;
@@ -34,9 +36,10 @@ function displayList(arrData, rowPerPage, page) {
       postDetailsBody.innerText = `Пост: ${el.body}`;
 
       postDetails.appendChild(postDetailsBlock);
-      postDetailsBlock.appendChild(close);
-      postDetailsBlock.appendChild(postDetailsHeader);
-      postDetailsBlock.appendChild(postDetailsBody);
+      postDetailsBlock.appendChild(postDetailsContent);
+      postDetailsContent.appendChild(close);
+      postDetailsContent.appendChild(postDetailsHeader);
+      postDetailsContent.appendChild(postDetailsBody);
 
       postDetails.style.display = "block";
     };
