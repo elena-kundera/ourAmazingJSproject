@@ -81,15 +81,30 @@ btn.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
   let commentinput = document.getElementById("commentinput").value;
   let titleСomment = document.getElementById("titleСomment").value;
+
   let today = new Date();
 
   let comment2 = new Comment2({
     body: commentinput,
     id: obj.firstname,
     title: titleСomment,
-    userId: today.toLocaleDateString(),
+    userId: today.toLocaleDateString(),    
   });
+  
+    
+  //ввыводим ошибку 
+  let mistake = document.createElement("div");
+  if (titleСomment === "" || commentinput === "") {
+    if (document.getElementById("mistake").innerText===''){
+    let mistake = document.createElement("div");
+    mistake.innerText = `Поле 'Тема поста' или  'Мой пост'не заполнен(ы)`;
+    document.getElementById("mistake").setAttribute("class", "mistakeShow"); 
+    document.getElementById("mistake").appendChild(mistake); }
+    return;
+  };
+//
 
+    
   let posts = JSON.parse(localStorage.getItem("postList"));
   posts.push(comment2);
   localStorage.setItem("postList", JSON.stringify(posts));
@@ -108,9 +123,9 @@ btn.addEventListener("click", function showMessage() {
   createPostContainerChilds();
   displayList(posts, rows, currentPage);
   displayPagination(posts, rows, currentPage);
-
+  
   document.getElementById("commentinput").value = "";
   document.getElementById("titleСomment").value = "";
-
+  
   modalCommentsContainer.style.display = "none";  
 });
