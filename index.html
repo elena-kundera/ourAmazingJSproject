@@ -28,6 +28,7 @@
                   <input
                     type="text"
                     id="firstname"
+                    maxlength="12"
                     placeholder="Имя"
                     class="field"
                     required
@@ -145,7 +146,12 @@
         <button type="button" class="buttonModalOpen" onclick="modalOpen ( );">
           Регистрация
         </button>
-        <button type="button" id="buttonAddPost" class="buttonAddPost" onclick="modalCommentsContainerOpen ( )">
+        <button
+          type="button"
+          id="buttonAddPost"
+          class="buttonAddPost"
+          onclick="modalCommentsContainerOpen ( )"
+        >
           Добавить пост
         </button>
       </div>
@@ -170,9 +176,7 @@
           cols="35"
           placeholder="Мой пост..."
         ></textarea>
-        <button type="button" id="btn" class="publish" >
-          Опубликовать
-        </button>
+        <button type="button" id="btn" class="publish">Опубликовать</button>
       </div>
     </div>
 

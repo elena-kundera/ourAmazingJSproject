@@ -75,10 +75,10 @@ buttonRegistration.onclick = function (event) {
     }
   }
 
-  // validateDay(day);
-  // validateYear(year);
-  // validateEmail(email);
-  // checkValidity(firstpassword);
+  validateDay(day);
+  validateYear(year);
+  validateEmail(email);
+  checkValidity(firstpassword);
   validatePhone(phone);
 
   let phoneFormat = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
