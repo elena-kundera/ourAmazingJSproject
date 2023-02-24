@@ -14,7 +14,7 @@ const username = document.querySelector("#username");
 const usernameBlock = document.querySelector(".username-block");
 const buttonModalOpen = document.querySelector(".buttonModalOpen");
 const buttonRegistration = document.querySelector(".buttonRegistration");
-const buttonAddPost = document.querySelector("#btn");
+const buttonAddPost = document.querySelector(".buttonAddPost");
 
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonModalOpen.style.display = "none";
   } else {
     usernameBlock.style.display = "none";
+    buttonAddPost.style.display = "none";
   }
 });
 
@@ -74,10 +75,10 @@ buttonRegistration.onclick = function (event) {
     }
   }
 
-  validateDay(day);
-  validateYear(year);
-  validateEmail(email);
-  checkValidity(firstpassword);
+  // validateDay(day);
+  // validateYear(year);
+  // validateEmail(email);
+  // checkValidity(firstpassword);
   validatePhone(phone);
 
   let phoneFormat = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
