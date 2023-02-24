@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-  background-color: #f1f5f8;
+  background-color: #f1f7f8;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -39,7 +39,7 @@ body {
 
 .posts {
   display: grid;
-  background-color: #e3e3e3;
+  background-color: rgb(210, 241, 246);
   grid-template-rows: repeat(auto-fit, minmax(1fr));
   margin: 10px;
   border-radius: 10px;
