@@ -8,9 +8,10 @@
     <link href="assets/form.css" rel="stylesheet" />
     <link href="assets/search.css" rel="stylesheet" />
     <link href="assets/style.css" rel="stylesheet" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="assets/images/icon.png" />
+    <title>Posts</title>
   </head>
-  <body clsaa="container">
+  <body class="container">
     <div id="modalcontainer">
       <div class="modal">
         <div class="modal-content">
@@ -120,6 +121,8 @@
       </div>
     </div>
 
+    <div id="postDetails"></div>
+
     <div class="username-block">
       <div id="username"></div>
     </div>
@@ -127,29 +130,42 @@
     <!-- Шапка -->
     <header class="header">
       <!-- Форма поиска -->
-      <form class="header-search">
-        <input
-          class="header-search__input"
-          placeholder="Введите заголовок..."
-        />
-        <button class="header-search__button">Найти</button>
-        <button class="header-search__cancel">Отменить поиск</button>
-      </form>
+      <div class="header-search">
+        <div class="header-search-field">
+          <input
+            class="header-search__input"
+            placeholder="Введите заголовок или текст поста..."
+          />
+          <img class="header-search__cancel hidden-icon" src="/assets/images/cancel_24.svg"/>
+          <img class="header-search__magnifier" src="/assets/images/search.svg"/>
+        </div>
+      </div>
     </header>
 
-    <div id="postsContainer">
+    <div id="postsContainer" class="container-posts">
       <div id="posts" class="posts"></div>
+      <div id="newPosts" class="newPosts"></div>
       <div id="pagination" class="pagination"></div>
+    </div>
+    <div id="commentsContainer" class="commentsContainer">
+      <div id="author" class="author"></div>
+      <label for="titleСomment" class="titleСomment">Тема поста: </label>
+      <input type="text" id="titleСomment" />
+      <label for="commentinput" class="commentinput">Мой пост: </label>
+      <textarea id="commentinput" rows="7" cols="35"></textarea>
+      <div>
+        <button type="button" id="btn" class="buttonAddPost">
+          Добавить пост
+        </button>
+      </div>
     </div>
     <button type="button" class="buttonModalOpen" onclick="modalOpen ( );">
       Регистрация
-    </button>
-    <button type="button" class="buttonAddPost" onclick="addPost ( );">
-      Добавить пост
     </button>
 
     <script src="script.js"></script>
     <script src="form.js"></script>
     <script src="search.js"></script>
+    <script src="print.js"></script>
   </body>
 </html>

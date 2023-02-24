@@ -1,42 +1,130 @@
 function searchPosts(){
-    clearPostList();
+    showCancelIcon();
+    const searchField = document.querySelector('.header-search__input');
+    let searchText = searchField.value;
+    searchText = searchText.trim();
 
-    const searchText = document.querySelector(".header-search__input").value;
-    let resultPostList = [];
+    
 
-    const posts = JSON.parse(localStorage.getItem('postList'));
-
-    posts.forEach(post => {
-        if (post.title.toLowerCase().includes(searchText)){
-        resultPostList.push(post);
+    if (searchText != ''){
+        clearPostList();
+        let resultPostList = [];
+        
+        const posts = JSON.parse(localStorage.getItem('postList'));
+        posts.forEach(post => {
+            if (post.title.toLowerCase().includes(searchText)){
+                resultPostList.push(post);
+            }
+            else if (post.body.toLowerCase().includes(searchText)){
+                resultPostList.push(post);
+            }
+        });
+        
+        printSearchResult(resultPostList);
     }
-    else if (post.body.toLowerCase().includes(searchText)){
-        resultPostList.push(post);
-    }
-    });
 
-    printSearchResult(resultPostList);
+    else{
+        searchField.value = '';
+        cancelSearch();
+    }
+}
+
+function showCancelIcon(){
+    const canselIcon = document.querySelector('.header-search__cancel');
+    const magnifierIcon = document.querySelector('.header-search__magnifier');
+
+    canselIcon.classList.remove('hidden-icon');
+    magnifierIcon.classList.add('hidden-icon');
+}
+
+function showMagnifierIcon(){
+    const canselIcon = document.querySelector('.header-search__cancel');
+    const magnifierIcon = document.querySelector('.header-search__magnifier');
+
+    magnifierIcon.classList.remove('hidden-icon');
+    canselIcon.classList.add('hidden-icon');
 }
 
 function printSearchResult(posts){
     if (posts.length > 0){
-        // Здесь нужно выводить посты с пагинацией
+        clearPostList();
+        // Выводим посты с пагинацией
+        const currentPage = 1;
+        const rows = 7;
+        
+        createPostContainerChilds();  
+        displayList(posts, rows, currentPage);
+        displayPagination(posts, rows, currentPage);
     }
     else{
-        // TODO Заменить плейсхолдером
-        alert("Посты не найдены");
+        // Если совпадений нет, показываем плейсхолдер
+        clearPostList();
+        const placeholder = document.createElement('div');
+        placeholder.classList.add('container-posts-placeholder')
+        placeholder.innerHTML = 'Посты не найдены';
+        const postsContainer = document.querySelector('.container-posts');
+        postsContainer.appendChild(placeholder);
     }
 }
 
 function clearPostList()
 {
-    let postsContainer = document.querySelector("#postsContainer");
-    postsContainer.innerHTML = '';
+    const postContainer = document.querySelector('.container-posts');
+
+    const posts = document.querySelector('.posts');
+    if (posts != null){
+        postContainer.removeChild(posts);
+    }
+
+    const pagination = document.querySelector('.pagination');
+    if (pagination != null){
+        postContainer.removeChild(pagination);
+    }
+
+    const placeholder = document.querySelector('.container-posts-placeholder');
+    if (placeholder != null){
+        postContainer.removeChild(placeholder);
+    }
+}
+
+function createPostContainerChilds(){
+    const postContainer = document.querySelector('.container-posts');
+    createContainerElement(postContainer, 'posts');
+    createContainerElement(postContainer, 'pagination');
+
+}
+
+function createContainerElement(container, childName){
+    const child = document.createElement('div');
+    child.classList.add(childName);
+    child.setAttribute('id', childName);
+    container.appendChild(child);
 }
 
 function cancelSearch(){
-    // Здесь нужно выводить посты с пагинацией
+    // Очищаем поле поиска
+    const searchField = document.querySelector('.header-search__input');
+    searchField.value = '';
+
+    // Убираем старый результат
+    clearPostList();
+    showMagnifierIcon();
+
+    // Показываем все посты
+    const posts = JSON.parse(localStorage.getItem('postList'));
+    const currentPage = 1;
+    const rows = 7;
+
+    createPostContainerChilds();    
+    displayList(posts, rows, currentPage);
+    displayPagination(posts, rows, currentPage);
 }
 
-document.querySelector(".header-search__button").addEventListener("click", searchPosts);
-document.querySelector(".header-search__cancel").addEventListener("click", cancelSearch);
+
+document.querySelector('.header-search__cancel').addEventListener('click', cancelSearch);
+
+const searchInput = document.querySelector('.header-search__input');
+searchInput.addEventListener('change', searchPosts);
+searchInput.addEventListener('keyup', searchPosts);
+
+
