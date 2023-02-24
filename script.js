@@ -1,4 +1,5 @@
 const postDetails = document.querySelector("#postDetails");
+const modalCommentsContainer = document.querySelector(".modalCommentsContainer");
 
 async function getData() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -47,13 +48,17 @@ function postDetailsClose() {
   postDetails.style.display = "none";
 }
 
+function closeCommentsContainer() {
+  modalCommentsContainer.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", function (event) {
   const name = localStorage.getItem("user");
   obj = JSON.parse(name);
   let author = document.createElement("div");
 
   if (name != null) {
-    author.innerText = `Автор: ${obj.firstname}`;
+    author.innerText = `${obj.firstname}`;
     document.getElementById("author").appendChild(author);
   }
 });
@@ -68,7 +73,12 @@ class Comment2 {
   }
 }
 
+function modalCommentsContainerOpen ( ) {
+  modalCommentsContainer.style.display = "block";  
+}
+
 btn.addEventListener("click", function showMessage() {
+  modalCommentsContainer.style.display = "grid";
   let commentinput = document.getElementById("commentinput").value;
   let titleСomment = document.getElementById("titleСomment").value;
   let today = new Date();
@@ -95,10 +105,12 @@ btn.addEventListener("click", function showMessage() {
   const rows = 7;
 
   // Выводим список
-  createPostContainerChilds();   
+  createPostContainerChilds();
   displayList(posts, rows, currentPage);
   displayPagination(posts, rows, currentPage);
 
   document.getElementById("commentinput").value = "";
   document.getElementById("titleСomment").value = "";
+
+  modalCommentsContainer.style.display = "none";  
 });

@@ -141,6 +141,14 @@
         />
         <img class="header-search__magnifier" src="assets/images/search.svg" />
       </div>
+      <div>
+        <button type="button" class="buttonModalOpen" onclick="modalOpen ( );">
+          Регистрация
+        </button>
+        <button type="button" id="buttonAddPost" class="buttonAddPost" onclick="modalCommentsContainerOpen ( )">
+          Добавить пост
+        </button>
+      </div>
     </header>
 
     <div id="postsContainer" class="container-posts">
@@ -148,21 +156,25 @@
       <div id="newPosts" class="newPosts"></div>
       <div id="pagination" class="pagination"></div>
     </div>
-    <div id="commentsContainer" class="commentsContainer">
-      <div id="author" class="author"></div>
-      <label for="titleСomment" class="titleСomment">Тема поста: </label>
-      <input type="text" id="titleСomment" />
-      <label for="commentinput" class="commentinput">Мой пост: </label>
-      <textarea id="commentinput" rows="7" cols="35"></textarea>
-      <div>
-        <button type="button" id="btn" class="buttonAddPost">
-          Добавить пост
+
+    <div class="modalCommentsContainer">
+      <div id="commentsContainer" class="commentsContainer">
+        <div id="closeCommentsContainer" onclick="closeCommentsContainer()">
+          x
+        </div>
+        <div id="author" class="author"></div>
+        <input type="text" id="titleСomment" placeholder="Тема поста" />
+        <textarea
+          id="commentinput"
+          rows="7"
+          cols="35"
+          placeholder="Мой пост..."
+        ></textarea>
+        <button type="button" id="btn" class="publish" >
+          Опубликовать
         </button>
       </div>
     </div>
-    <button type="button" class="buttonModalOpen" onclick="modalOpen ( );">
-      Регистрация
-    </button>
 
     <script src="script.js"></script>
     <script src="form.js"></script>
