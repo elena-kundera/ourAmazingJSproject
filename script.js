@@ -23,10 +23,9 @@ async function getData() {
 }
 
 async function main() {
-  //let allThePosts = [];
 
   const postsData = await getData();
-  localStorage.setItem("postList", JSON.stringify(postsData));
+  
 
   function finalArray() {
 let getThatPost = localStorage.getItem('newPosts');
@@ -38,6 +37,7 @@ let getThatPost = localStorage.getItem('newPosts');
   const gotThatPostParsed = finalArray();
 
   let allThePosts = gotThatPostParsed.concat(postsData);
+  localStorage.setItem("postList", JSON.stringify(allThePosts));
   console.log(allThePosts);
   
 
