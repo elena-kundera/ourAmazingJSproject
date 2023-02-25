@@ -1,4 +1,3 @@
-@charset "UTF-8";
 body {
   background-color: #f1f7f8;
   font-family: "Open Sans", sans-serif;
@@ -35,6 +34,20 @@ body {
   grid-template-columns: 1fr;
   border-radius: 10px;
   padding: 10px;
+}
+
+.container-header {
+  display: grid;
+  grid-template-columns: 0.65fr 1fr 1fr 2fr 1fr;
+  justify-items: center;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.container-header:first-child {
+  text-align: start;
 }
 
 .posts {
