@@ -5,6 +5,7 @@ const modalCommentsContainer = document.querySelector(
 const buttonPublish = document.querySelector("#buttonPublish");
 const commentinput = document.getElementById("commentinput");
 const titleСomment = document.getElementById("titleСomment");
+let obj = JSON.parse(localStorage.getItem("user"));
 let today = new Date();
 let newPosts = [];
 class Comment2 {
@@ -17,12 +18,12 @@ class Comment2 {
 }
 
 function finalArray() {
-  let getThatPost = localStorage.getItem('newPosts');
-    if (getThatPost != null) {
-      let getThatPostParsed = JSON.parse(getThatPost);
-      return getThatPostParsed;
-    }}
-
+  let getThatPost = localStorage.getItem("newPosts");
+  if (getThatPost != null) {
+    let getThatPostParsed = JSON.parse(getThatPost);
+    return getThatPostParsed;
+  }
+}
 
 async function getData() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -31,14 +32,11 @@ async function getData() {
 }
 
 async function main() {
-
   const postsData = await getData();
   const gotThatPostParsed = finalArray();
 
   let allThePosts = gotThatPostParsed.concat(postsData);
   localStorage.setItem("postList", JSON.stringify(allThePosts));
-  
-  
 
   let currentPage = 1;
   let rows = 7;
@@ -48,8 +46,6 @@ async function main() {
 }
 
 main();
-
-
 
 // Рандомная дата
 function getRandomDate() {
@@ -76,11 +72,6 @@ function getRandomDate() {
   return rndDate + " / " + rndMonth + " / " + rndYear;
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  const name = localStorage.getItem("user");
-  obj = JSON.parse(name);
-});
-
 function postDetailsClose() {
   postDetails.style.display = "none";
   enableScroll();
@@ -96,13 +87,15 @@ function modalCommentsContainerOpen() {
   disableScroll();
 }
 
+
+
 buttonPublish.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
   enableScroll();
 
   let comment2 = new Comment2({
     body: commentinput.value,
-    //id: obj.firstname,
+    id: obj.firstname,
     title: titleСomment.value,
     userId: today.toLocaleDateString(),
   });
@@ -122,22 +115,6 @@ buttonPublish.addEventListener("click", function showMessage() {
 
   newPosts.push(comment2);
   localStorage.setItem("newPosts", JSON.stringify(newPosts));
-
-  //Пока оставила прежний вывод из общего ключа postList (вдруг придется вернуться) - потом удалить!
-
-  // let posts = JSON.parse(localStorage.getItem("postList"));
-  // posts.push(comment2);
-  // localStorage.setItem("postList", JSON.stringify(posts));
-
-  // Очищаем таблицу
-  // clearPostList();
-
-  // Выводим список
-  // const currentPage = 1;
-  // const rows = 7;
-  // createPostContainerChilds();
-  // displayList(posts, rows, currentPage);
-  // displayPagination(posts, rows, currentPage);
 
   commentinput.value = "";
   titleСomment.value = "";
