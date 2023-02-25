@@ -72,6 +72,10 @@ function displayPagination(arrData, rowPerPage, currentPage) {
     ulEl.appendChild(liEl);
   }
   paginationEl.appendChild(ulEl);
+
+  if (pagesCount <= 1) {
+    paginationEl.style.display = "none";
+  }
 }
 
 function displayPaginationBtn(page, currentPage, postsData, rows) {
