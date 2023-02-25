@@ -98,7 +98,7 @@ buttonPublish.addEventListener("click", function showMessage() {
     if (document.getElementById("mistake").innerText === "") {
       let mistake = document.createElement("div");
       mistake.innerText = `Поле 'Тема поста' или  'Мой пост'не заполнен(ы)`;
-      document.getElementById("mistake").setAttribute("class", "mistakeShow");
+      document.getElementById("mistake").setAttribute("class", "errorMessage");
       document.getElementById("mistake").appendChild(mistake);
     }
     return;
