@@ -1,4 +1,20 @@
 const postDetails = document.querySelector("#postDetails");
+const modalCommentsContainer = document.querySelector(
+  ".modalCommentsContainer"
+);
+const buttonPublish = document.querySelector("#buttonPublish");
+const commentinput = document.getElementById("commentinput");
+const titleСomment = document.getElementById("titleСomment");
+let today = new Date();
+let newPosts = [];
+class Comment2 {
+  constructor(options) {
+    this.userId = options.userId;
+    this.id = options.id;
+    this.title = options.title;
+    this.body = options.body;
+  }
+}
 
 async function getData() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -43,59 +59,71 @@ function getRandomDate() {
   return rndDate + " / " + rndMonth + " / " + rndYear;
 }
 
-function postDetailsClose() {
-  postDetails.style.display = "none";
-}
-
 document.addEventListener("DOMContentLoaded", function (event) {
   const name = localStorage.getItem("user");
   obj = JSON.parse(name);
-  let author = document.createElement("div");
-
-  if (name != null) {
-    author.innerText = `Автор: ${obj.firstname}`;
-    document.getElementById("author").appendChild(author);
-  }
 });
 
-const btn = document.querySelector("#btn");
-class Comment2 {
-  constructor(options) {
-    this.userId = options.userId;
-    this.id = options.id;
-    this.title = options.title;
-    this.body = options.body;
-  }
+function postDetailsClose() {
+  postDetails.style.display = "none";
+  enableScroll();
 }
 
-btn.addEventListener("click", function showMessage() {
-  let commentinput = document.getElementById("commentinput").value;
-  let titleСomment = document.getElementById("titleСomment").value;
-  let today = new Date();
+function closeCommentsContainer() {
+  modalCommentsContainer.style.display = "none";
+  enableScroll();
+}
+
+function modalCommentsContainerOpen() {
+  modalCommentsContainer.style.display = "block";
+  disableScroll();
+}
+
+buttonPublish.addEventListener("click", function showMessage() {
+  modalCommentsContainer.style.display = "grid";
+  enableScroll();
 
   let comment2 = new Comment2({
-    body: commentinput,
+    body: commentinput.value,
     id: obj.firstname,
-    title: titleСomment,
+    title: titleСomment.value,
     userId: today.toLocaleDateString(),
   });
 
-  let posts = JSON.parse(localStorage.getItem("postList"));
-  posts.push(comment2);
-  localStorage.setItem("postList", JSON.stringify(posts));
+  //ввыводим ошибку
+  let mistake = document.createElement("div");
+  if (titleСomment.value === "" || commentinput.value === "") {
+    if (document.getElementById("mistake").innerText === "") {
+      let mistake = document.createElement("div");
+      mistake.innerText = `Поле 'Тема поста' или  'Мой пост'не заполнен(ы)`;
+      document.getElementById("mistake").setAttribute("class", "errorMessage");
+      document.getElementById("mistake").appendChild(mistake);
+    }
+    return;
+  }
+  //
+
+  newPosts.push(comment2);
+  localStorage.setItem("newPosts", JSON.stringify(newPosts));
+
+  //Пока оставила прежний вывод из общего ключа postList (вдруг придется вернуться) - потом удалить!
+
+  // let posts = JSON.parse(localStorage.getItem("postList"));
+  // posts.push(comment2);
+  // localStorage.setItem("postList", JSON.stringify(posts));
 
   // Очищаем таблицу
-  clearPostList();
-
-  // Задаем текущую страницу и количество строк
-  const currentPage = 1;
-  const rows = 7;
+  // clearPostList();
 
   // Выводим список
-  createPostContainerChilds();   
-  displayList(posts, rows, currentPage);
-  displayPagination(posts, rows, currentPage);
+  // const currentPage = 1;
+  // const rows = 7;
+  // createPostContainerChilds();
+  // displayList(posts, rows, currentPage);
+  // displayPagination(posts, rows, currentPage);
 
-  document.getElementById("commentinput").value = "";
-  document.getElementById("titleСomment").value = "";
+  commentinput.value = "";
+  titleСomment.value = "";
+
+  modalCommentsContainer.style.display = "none";
 });

@@ -24,7 +24,6 @@ function searchPosts(){
     }
 
     else{
-        searchField.value = '';
         cancelSearch();
     }
 }
@@ -103,12 +102,10 @@ function createContainerElement(container, childName){
 
 function cancelSearch(){
     // Очищаем поле поиска
-    const searchField = document.querySelector('.header-search__input');
-    searchField.value = '';
+    clearSearchInput();
 
     // Убираем старый результат
     clearPostList();
-    showMagnifierIcon();
 
     // Показываем все посты
     const posts = JSON.parse(localStorage.getItem('postList'));
@@ -118,6 +115,14 @@ function cancelSearch(){
     createPostContainerChilds();    
     displayList(posts, rows, currentPage);
     displayPagination(posts, rows, currentPage);
+}
+
+function clearSearchInput(){
+    const searchField = document.querySelector('.header-search__input');
+    if (searchField != null){
+        searchField.value = '';
+        showMagnifierIcon();
+    }
 }
 
 
