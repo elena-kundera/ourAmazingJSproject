@@ -23,19 +23,23 @@ async function getData() {
 }
 
 async function main() {
-  let allThePosts = [];
+  //let allThePosts = [];
 
   const postsData = await getData();
   localStorage.setItem("postList", JSON.stringify(postsData));
 
+  function finalArray() {
 let getThatPost = localStorage.getItem('newPosts');
   if (getThatPost != null) {
     let getThatPostParsed = JSON.parse(getThatPost);
-    allThePosts.push(getThatPostParsed);
+    return getThatPostParsed;
+  }}
 
-  }
-  allThePosts.push(postsData);
+  const gotThatPostParsed = finalArray();
+
+  let allThePosts = gotThatPostParsed.concat(postsData);
   console.log(allThePosts);
+  
 
   let currentPage = 1;
   let rows = 7;
@@ -46,20 +50,7 @@ let getThatPost = localStorage.getItem('newPosts');
 
 main();
 
-// функция создания массива Local + api
 
-// document.addEventListener("DOMContentLoaded", function (event) {
-//   let allThePosts = [];
-//   let getThatPost =localStorage.getItem('newPosts');
-//   if (getThatPost != null) {
-//     allThePosts.push(getThatPost);
-//     console.log(allThePosts);
-//   }
-//   const postsData = getData();
-//   allThePosts.push(postsData);
-//   console.log(allThePosts);
-// }
-// )
 
 // Рандомная дата
 function getRandomDate() {
