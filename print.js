@@ -7,8 +7,8 @@ function displayList(arrData, rowPerPage, page) {
   const end = start + rowPerPage;
   const paginatedData = arrData.slice(start, end);
 
-  paginatedData.forEach((ele) => {
-    ele.forEach((el) => {
+  paginatedData.forEach((el) => {
+    
     const postEl = document.createElement("div");
     const postElBody = document.createElement("div");
     const postDate = document.createElement("div");
@@ -57,7 +57,7 @@ function displayList(arrData, rowPerPage, page) {
     postsEl.appendChild(postEl);
     postsEl.appendChild(postElBody);
     postsEl.appendChild(more);
-  })
+  
   });
 }
 
