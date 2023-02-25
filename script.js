@@ -16,6 +16,14 @@ class Comment2 {
   }
 }
 
+function finalArray() {
+  let getThatPost = localStorage.getItem('newPosts');
+    if (getThatPost != null) {
+      let getThatPostParsed = JSON.parse(getThatPost);
+      return getThatPostParsed;
+    }}
+
+
 async function getData() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await response.json();
@@ -25,20 +33,11 @@ async function getData() {
 async function main() {
 
   const postsData = await getData();
-  
-
-  function finalArray() {
-let getThatPost = localStorage.getItem('newPosts');
-  if (getThatPost != null) {
-    let getThatPostParsed = JSON.parse(getThatPost);
-    return getThatPostParsed;
-  }}
-
   const gotThatPostParsed = finalArray();
 
   let allThePosts = gotThatPostParsed.concat(postsData);
   localStorage.setItem("postList", JSON.stringify(allThePosts));
-  console.log(allThePosts);
+  
   
 
   let currentPage = 1;
