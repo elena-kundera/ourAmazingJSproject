@@ -115,7 +115,7 @@ buttonPublish.addEventListener("click", function showMessage() {
 
   newPosts.push(comment2);
   localStorage.setItem("newPosts", JSON.stringify(newPosts));
-
+  window.location.reload();//обновление страницы
   commentinput.value = "";
   titleСomment.value = "";
 
