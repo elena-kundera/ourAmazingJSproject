@@ -1,24 +1,26 @@
 #modalcontainer {
   display: none;
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  margin: 0;
   z-index: 1000;
 }
 
 .modal {
-  max-width: 450px;
-  margin: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  max-width: 90%;
+  height: 800px;
+  max-height: 100%;
+  z-index: 1010;
+  overflow: auto;
   font-style: normal;
-  z-index: 1;
-}
-@media (min-width: 768px) {
-  .modal {
-    margin: 5% auto;
-  }
 }
 
 .heading {
@@ -68,15 +70,14 @@
 .modal-content {
   display: flex;
   flex-direction: column;
-  background-color: oldlace;
   background: linear-gradient(to right, oldlace, rgb(245, 233, 211));
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0.3rem;
 }
 
 .modal-body {
   flex: 1 1 auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .blocks {
@@ -107,7 +108,7 @@ input[type=number],
   margin: 5px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  background: #ffffff;
 }
 
 input[type=text]:focus,
@@ -118,14 +119,15 @@ input[type=password]:focus {
 
 .buttonModalOpen,
 .buttonRegistration,
-.buttonAddPost {
+.buttonAddPost,
+.publish {
   display: block;
-  padding: 10px 0;
+  padding: 10px;
   margin: 10px auto;
   background: green;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  color: #ffffff;
   font-size: 14px;
   cursor: pointer;
 }
@@ -145,7 +147,7 @@ input[type=password]:focus {
 }
 
 .buttonAddPost {
-  display: none;
+  margin: 10px;
 }
 
 .errorMessage {
@@ -155,17 +157,6 @@ input[type=password]:focus {
   padding: 3px 10px;
 }
 
-.username-block {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#username {
-  padding: 6px;
-  margin: 10px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 3px;
+.scrollDisabling {
+  overflow: hidden;
 }/*# sourceMappingURL=form.css.map */

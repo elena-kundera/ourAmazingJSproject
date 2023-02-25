@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonModalOpen.style.display = "none";
   } else {
     usernameBlock.style.display = "none";
+    buttonAddPost.style.display = "none";
   }
 });
 
@@ -170,7 +171,7 @@ function validateEmail(email) {
 
 function validatePhone(phone) {
   if (phone.value !== "") {
-    let phoneFormat = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
+    let phoneFormat = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
     if (phone.value.match(phoneFormat)) {
       phone.style.border = "green solid 1px";
       return true;
@@ -185,9 +186,21 @@ function validatePhone(phone) {
 function modalClose() {
   modalcontainer.style.display = "none";
   buttonModalOpen.style.display = "block";
+  enableScroll();
 }
 
 function modalOpen() {
   modalcontainer.style.display = "block";
   buttonModalOpen.style.display = "none";
+  disableScroll();
+}
+
+function disableScroll() {
+  const mainContainer = document.querySelector(".container");
+  mainContainer.classList.add("scrollDisabling");
+}
+
+function enableScroll() {
+  const mainContainer = document.querySelector(".container");
+  mainContainer.classList.remove("scrollDisabling");
 }

@@ -1,108 +1,129 @@
+const postDetails = document.querySelector("#postDetails");
+const modalCommentsContainer = document.querySelector(
+  ".modalCommentsContainer"
+);
+const buttonPublish = document.querySelector("#buttonPublish");
+const commentinput = document.getElementById("commentinput");
+const titleСomment = document.getElementById("titleСomment");
+let today = new Date();
+let newPosts = [];
+class Comment2 {
+  constructor(options) {
+    this.userId = options.userId;
+    this.id = options.id;
+    this.title = options.title;
+    this.body = options.body;
+  }
+}
+
 async function getData() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const data = await response.json();
-    return data;
-  }
-  
-  async function main() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await response.json();
+  return data;
+}
 
-    const postsData = await getData();
-    localStorage.setItem('postList', JSON.stringify(postsData));
+async function main() {
+  const postsData = await getData();
+  localStorage.setItem("postList", JSON.stringify(postsData));
 
-    let currentPage = 1;
-    let rows = 7;
-  
-    function displayList(arrData, rowPerPage, page) {
-      const postsEl = document.querySelector('#posts');
-      postsEl.innerHTML = "";
-      page--;
-  
-      const start = rowPerPage * page;
-      const end = start + rowPerPage;
-      const paginatedData = arrData.slice(start, end);
-  
-      paginatedData.forEach((el) => {
-        const postEl = document.createElement("div");
-        const postElBody = document.createElement("div");
-        const postDate = document.createElement("div");
-        const postUser = document.createElement("div");
-        postEl.classList.add("post");
-        postEl.innerText = "Тема:   " + `${el.title}\r\n`;
-        postUser.innerText = "Пользователь: " + `${el.id}`;
-        postElBody.classList.add("post_body");
-        postElBody.innerText = `${el.body}`;
-        postDate.innerText = getRandomDate();
-        postsEl.appendChild(postDate);
-        postsEl.appendChild(postUser);
-        postsEl.appendChild(postEl);
-        postsEl.appendChild(postElBody);
-      })
+  let currentPage = 1;
+  let rows = 7;
+
+  displayList(postsData, rows, currentPage);
+  displayPagination(postsData, rows, currentPage);
+}
+
+main();
+
+function getRandomDate() {
+  let start = new Date();
+  start.setDate(1);
+  start.setMonth(8);
+  start.setFullYear(2022);
+  let startTime = start.getTime();
+
+  let end = new Date();
+  end.setDate(11);
+  end.setMonth(1);
+  end.setFullYear(2023);
+  let endTime = end.getTime();
+
+  let randomDate = new Date();
+  let randomDateTime = startTime + Math.random() * (endTime - startTime);
+  randomDate.setTime(randomDateTime);
+
+  let rndDate = randomDate.getDate();
+  let rndMonth = randomDate.getMonth() + 1;
+  let rndYear = randomDate.getFullYear();
+
+  return rndDate + " / " + rndMonth + " / " + rndYear;
+}
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  const name = localStorage.getItem("user");
+  obj = JSON.parse(name);
+});
+
+function postDetailsClose() {
+  postDetails.style.display = "none";
+  enableScroll();
+}
+
+function closeCommentsContainer() {
+  modalCommentsContainer.style.display = "none";
+  enableScroll();
+}
+
+function modalCommentsContainerOpen() {
+  modalCommentsContainer.style.display = "block";
+  disableScroll();
+}
+
+buttonPublish.addEventListener("click", function showMessage() {
+  modalCommentsContainer.style.display = "grid";
+  enableScroll();
+
+  let comment2 = new Comment2({
+    body: commentinput.value,
+    id: obj.firstname,
+    title: titleСomment.value,
+    userId: today.toLocaleDateString(),
+  });
+
+  //ввыводим ошибку
+  let mistake = document.createElement("div");
+  if (titleСomment.value === "" || commentinput.value === "") {
+    if (document.getElementById("mistake").innerText === "") {
+      let mistake = document.createElement("div");
+      mistake.innerText = `Поле 'Тема поста' или  'Мой пост'не заполнен(ы)`;
+      document.getElementById("mistake").setAttribute("class", "errorMessage");
+      document.getElementById("mistake").appendChild(mistake);
     }
-  
-    function displayPagination(arrData, rowPerPage) {
-      const paginationEl = document.querySelector('#pagination');
-      const pagesCount = Math.ceil(arrData.length / rowPerPage);
-      const ulEl = document.createElement("ul");
-      ulEl.classList.add('pagination__list');
-  
-      for (let i = 0; i < pagesCount; i++) {
-        const liEl = displayPaginationBtn(i + 1);
-        ulEl.appendChild(liEl);
-      }
-      paginationEl.appendChild(ulEl);
-    }
-  
-    function displayPaginationBtn(page) {
-      const liEl = document.createElement("li");
-      liEl.classList.add('pagination__item');
-      liEl.innerText = page
-  
-      if (currentPage == page) liEl.classList.add('pagination__item--active');
-  
-      liEl.addEventListener('click', () => {
-        currentPage = page
-        displayList(postsData, rows, currentPage)
-  
-        let currentItemLi = document.querySelector('li.pagination__item--active');
-        currentItemLi.classList.remove('pagination__item--active');
-  
-        liEl.classList.add('pagination__item--active');
-      })
-  
-      return liEl;
-    }
-  
-    displayList(postsData, rows, currentPage);
-    displayPagination(postsData, rows);
+    return;
   }
-  
-  main();
-  
+  //
 
+  newPosts.push(comment2);
+  localStorage.setItem("newPosts", JSON.stringify(newPosts));
 
-  function getRandomDate() {
-    let start = new Date();
-    start.setDate(1);
-    start.setMonth(8);
-    start.setFullYear(2022);
-    let startTime = start.getTime();
+  //Пока оставила прежний вывод из общего ключа postList (вдруг придется вернуться) - потом удалить!
 
-    let end = new Date();
-    end.setDate(11);
-    end.setMonth(1);
-    end.setFullYear(2023);
-    let endTime = end.getTime();
-    
-    let randomDate = new Date();
-    let randomDateTime = startTime + Math.random() * (endTime - startTime);
-    randomDate.setTime(randomDateTime);
+  // let posts = JSON.parse(localStorage.getItem("postList"));
+  // posts.push(comment2);
+  // localStorage.setItem("postList", JSON.stringify(posts));
 
-    let rndDate = randomDate.getDate();
-    let rndMonth = randomDate.getMonth() + 1;
-    let rndYear = randomDate.getFullYear();
+  // Очищаем таблицу
+  // clearPostList();
 
-      return rndDate + " / " + rndMonth + " / " + rndYear;
-  }
+  // Выводим список
+  // const currentPage = 1;
+  // const rows = 7;
+  // createPostContainerChilds();
+  // displayList(posts, rows, currentPage);
+  // displayPagination(posts, rows, currentPage);
 
+  commentinput.value = "";
+  titleСomment.value = "";
 
- 
+  modalCommentsContainer.style.display = "none";
+});
