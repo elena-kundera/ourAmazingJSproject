@@ -62,28 +62,26 @@ function getRandomDate() {
 document.addEventListener("DOMContentLoaded", function (event) {
   const name = localStorage.getItem("user");
   obj = JSON.parse(name);
-  let author = document.createElement("div");
-
-  if (name != null) {
-    author.innerText = `${obj.firstname}`;
-    document.getElementById("author").appendChild(author);
-  }
 });
 
 function postDetailsClose() {
   postDetails.style.display = "none";
+  enableScroll();
 }
 
 function closeCommentsContainer() {
   modalCommentsContainer.style.display = "none";
+  enableScroll();
 }
 
 function modalCommentsContainerOpen() {
   modalCommentsContainer.style.display = "block";
+  disableScroll();
 }
 
 buttonPublish.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
+  enableScroll();
 
   let comment2 = new Comment2({
     body: commentinput.value,

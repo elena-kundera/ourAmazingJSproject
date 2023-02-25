@@ -155,4 +155,8 @@ input[type=password]:focus {
   font-weight: 600;
   font-size: 12px;
   padding: 3px 10px;
+}
+
+.scrollDisabling {
+  overflow: hidden;
 }/*# sourceMappingURL=form.css.map */
