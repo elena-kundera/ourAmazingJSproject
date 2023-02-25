@@ -14,7 +14,7 @@ const username = document.querySelector("#username");
 const usernameBlock = document.querySelector(".username-block");
 const buttonModalOpen = document.querySelector(".buttonModalOpen");
 const buttonRegistration = document.querySelector(".buttonRegistration");
-const buttonAddPost = document.querySelector(".buttonAddPost");
+const buttonAddPost = document.querySelector("#btn");
 
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");

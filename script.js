@@ -23,18 +23,45 @@ async function getData() {
 }
 
 async function main() {
+  let allThePosts = [];
+
   const postsData = await getData();
   localStorage.setItem("postList", JSON.stringify(postsData));
+
+let getThatPost = localStorage.getItem('newPosts');
+  if (getThatPost != null) {
+    let getThatPostParsed = JSON.parse(getThatPost);
+    allThePosts.push(getThatPostParsed);
+
+  }
+  allThePosts.push(postsData);
+  console.log(allThePosts);
 
   let currentPage = 1;
   let rows = 7;
 
-  displayList(postsData, rows, currentPage);
-  displayPagination(postsData, rows, currentPage);
+  displayList(allThePosts, rows, currentPage);
+  displayPagination(allThePosts, rows, currentPage);
 }
 
 main();
 
+// функция создания массива Local + api
+
+// document.addEventListener("DOMContentLoaded", function (event) {
+//   let allThePosts = [];
+//   let getThatPost =localStorage.getItem('newPosts');
+//   if (getThatPost != null) {
+//     allThePosts.push(getThatPost);
+//     console.log(allThePosts);
+//   }
+//   const postsData = getData();
+//   allThePosts.push(postsData);
+//   console.log(allThePosts);
+// }
+// )
+
+// Рандомная дата
 function getRandomDate() {
   let start = new Date();
   start.setDate(1);
@@ -85,7 +112,7 @@ buttonPublish.addEventListener("click", function showMessage() {
 
   let comment2 = new Comment2({
     body: commentinput.value,
-    id: obj.firstname,
+    //id: obj.firstname,
     title: titleСomment.value,
     userId: today.toLocaleDateString(),
   });
