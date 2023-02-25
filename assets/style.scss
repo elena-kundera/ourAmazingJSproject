@@ -38,6 +38,20 @@ body {
   padding: 10px;
 }
 
+//заголовки для таблицы
+.container-header{
+  display: grid;
+  grid-template-columns: 0.65fr 1fr 1fr 2fr 1fr;
+  justify-items: center;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  gap: 10px;
+}
+.container-header:first-child {
+  text-align: start;
+}
+//
 .posts {
   display: grid;
   background-color: $background-dark;
