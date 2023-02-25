@@ -46,21 +46,18 @@ function getRandomDate() {
 
 function postDetailsClose() {
   postDetails.style.display = "none";
+  enableScroll();
 }
 
 function closeCommentsContainer() {
   modalCommentsContainer.style.display = "none";
+  enableScroll();
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
   const name = localStorage.getItem("user");
   obj = JSON.parse(name);
   let author = document.createElement("div");
-
-  if (name != null) {
-    author.innerText = `${obj.firstname}`;
-    document.getElementById("author").appendChild(author);
-  }
 });
 
 const btn = document.querySelector("#btn");
@@ -75,10 +72,12 @@ class Comment2 {
 
 function modalCommentsContainerOpen ( ) {
   modalCommentsContainer.style.display = "block";  
+  disableScroll();
 }
 
 btn.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
+  disableScroll();
   let commentinput = document.getElementById("commentinput").value;
   let titleСomment = document.getElementById("titleСomment").value;
   let today = new Date();
@@ -113,4 +112,6 @@ btn.addEventListener("click", function showMessage() {
   document.getElementById("titleСomment").value = "";
 
   modalCommentsContainer.style.display = "none";  
+  enableScroll();
 });
+
