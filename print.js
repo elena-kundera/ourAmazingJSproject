@@ -51,7 +51,9 @@ function displayList(arrData, rowPerPage, page) {
     postElBody.classList.add("post_body");
     postElBody.innerText = `${el.body}`;
     postDate.innerText = getRandomDate();
+    postDate.classList.add("post_date");
     postUser.innerText = `${el.id}`;
+    postUser.classList.add("post_user");
     more.innerText = "Подробнее";
     more.classList.add("button_more");
     postsEl.appendChild(postDate);
