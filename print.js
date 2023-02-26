@@ -66,7 +66,7 @@ function displayList(arrData, rowPerPage, page) {
 
     // 11 - id нашего пользователя. Подробнее в script.js
     if (parseInt(el.userId) == 11) {
-      showDeletionButton(postsEl);
+      showDeletionButton(postsEl, el.id);
     } else {
       const deletionGap = document.createElement("div");
       postsEl.appendChild(deletionGap);
