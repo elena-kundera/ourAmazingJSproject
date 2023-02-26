@@ -266,4 +266,8 @@ textarea:focus {
   #closeCommentsContainer {
     margin-left: 110%;
   }
+}
+
+.buttonsContainer {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */
