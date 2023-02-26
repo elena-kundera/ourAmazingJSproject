@@ -35,13 +35,18 @@ async function getData() {
 async function main() {
   const postsData = await getData();
   const gotThatPostParsed = finalArray();
-
-  let allThePosts = gotThatPostParsed.concat(postsData);
-  localStorage.setItem("postList", JSON.stringify(allThePosts));
+  let allThePosts;
 
   let currentPage = 1;
   let rows = 7;
 
+  if (gotThatPostParsed != null) {
+    allThePosts = gotThatPostParsed.concat(postsData);
+  } else {
+    allThePosts = postsData;
+  }
+
+  localStorage.setItem("postList", JSON.stringify(allThePosts));
   displayList(allThePosts, rows, currentPage);
   displayPagination(allThePosts, rows, currentPage);
 }
@@ -113,9 +118,15 @@ buttonPublish.addEventListener("click", function showMessage() {
   //
 
   const postsFromNewPosts = finalArray();
-  let allNewPosts = postsFromNewPosts.concat(comment2);
 
-  localStorage.setItem("newPosts", JSON.stringify(allNewPosts));
+  if (postsFromNewPosts != null) {
+    let allNewPosts = postsFromNewPosts.concat(comment2);
+    localStorage.setItem("newPosts", JSON.stringify(allNewPosts));
+  } else {
+    newPosts.push(comment2);
+    localStorage.setItem("newPosts", JSON.stringify(newPosts));
+  }
+
   window.location.reload(); //обновление страницы
   commentinput.value = "";
   titleСomment.value = "";
