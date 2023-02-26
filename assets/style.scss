@@ -47,9 +47,9 @@ body {
   margin: 10px;
   padding: 10px;
   gap: 10px;
+  @media ((max-width: $tablet)) {
+    display: none;
 }
-.container-header:first-child {
-  text-align: start;
 }
 //
 .posts {
