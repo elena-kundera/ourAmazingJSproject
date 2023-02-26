@@ -97,11 +97,16 @@ buttonPublish.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
   enableScroll();
 
+  let newPostId = getNewPostId();
+
   let comment2 = new Comment2({
     body: commentinput.value,
-    id: obj.firstname,
+    id: newPostId,
     title: titleСomment.value,
-    userId: today.toLocaleDateString(),
+    // 11 - потому что пользователей всего 10, наш будет 11-м. 
+    // Это не есть хорошо, но, чтобы исправить сие поведение, нужно запрашивать данные с сервера
+    // при регистрации пользователя и сохранять правильный id
+    userId: 11,
   });
 
   //ввыводим ошибку
@@ -133,3 +138,11 @@ buttonPublish.addEventListener("click", function showMessage() {
 
   modalCommentsContainer.style.display = "none";
 });
+
+function getNewPostId(){
+  const newPostListLength = JSON.parse(localStorage.getItem("newPosts")).length;
+  const oldPostListLength = JSON.parse(localStorage.getItem("postList")).length;
+  // -1 - костыль, можно убрать, если будем хранить все данные в одном массиве
+  let length = newPostListLength + oldPostListLength - 1; 
+  return length;
+}

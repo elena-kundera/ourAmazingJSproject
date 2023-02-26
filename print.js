@@ -64,7 +64,8 @@ function displayList(arrData, rowPerPage, page) {
     let userData = localStorage.getItem("user");
     let username = JSON.parse(userData).firstname;
 
-    if (el.id == username) {
+    // 11 - id нашего пользователя. Подробнее в script.js
+    if (parseInt(el.userId) == 11) {
       showDeletionButton(postsEl);
     } else {
       const deletionGap = document.createElement("div");
