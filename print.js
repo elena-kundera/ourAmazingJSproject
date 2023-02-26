@@ -57,6 +57,21 @@ function displayList(arrData, rowPerPage, page) {
     postsEl.appendChild(postEl);
     postsEl.appendChild(postElBody);
     postsEl.appendChild(more);
+
+    let userData = localStorage.getItem("user");
+    let username = JSON.parse(userData).firstname;
+
+    if (el.id == username){
+      const deletion = document.createElement("button");
+      deletion.innerText = "Удалить";
+      deletion.onclick = deletePost;
+      deletion.classList.add("button_deletion");
+      postsEl.appendChild(deletion);
+    } 
+    else{
+      const deletionGap = document.createElement("div");
+      postsEl.appendChild(deletionGap);
+    }
   
   });
 }
@@ -96,4 +111,8 @@ function displayPaginationBtn(page, currentPage, postsData, rows) {
   });
 
   return liEl;
+}
+
+function deletePost(){
+  
 }
