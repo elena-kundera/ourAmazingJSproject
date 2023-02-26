@@ -45,9 +45,10 @@ body {
   padding: 10px;
   gap: 10px;
 }
-
-.container-header:first-child {
-  text-align: start;
+@media ((max-width: 768px)) {
+  .container-header {
+    display: none;
+  }
 }
 
 .posts {
