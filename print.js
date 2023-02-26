@@ -15,11 +15,13 @@ function displayList(arrData, rowPerPage, page) {
     const postUser = document.createElement("div");
     const more = document.createElement("button");
     more.onclick = function () {
+      disableScroll();
       const postDetails = document.querySelector("#postDetails");
       postDetails.innerHTML = "";
       const close = document.createElement("div");
       close.onclick = function () {
         postDetails.style.display = "none";
+        enableScroll();
       };
       close.innerText = "x";
       close.classList.add("close");
@@ -114,5 +116,5 @@ function displayPaginationBtn(page, currentPage, postsData, rows) {
 }
 
 function deletePost(){
-  
+
 }
