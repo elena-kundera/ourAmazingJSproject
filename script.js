@@ -8,6 +8,7 @@ const titleСomment = document.getElementById("titleСomment");
 let obj = JSON.parse(localStorage.getItem("user"));
 let today = new Date();
 let newPosts = [];
+
 class Comment2 {
   constructor(options) {
     this.userId = options.userId;
@@ -87,8 +88,6 @@ function modalCommentsContainerOpen() {
   disableScroll();
 }
 
-
-
 buttonPublish.addEventListener("click", function showMessage() {
   modalCommentsContainer.style.display = "grid";
   enableScroll();
@@ -113,9 +112,11 @@ buttonPublish.addEventListener("click", function showMessage() {
   }
   //
 
-  newPosts.push(comment2);
-  localStorage.setItem("newPosts", JSON.stringify(newPosts));
-  window.location.reload();//обновление страницы
+  const postsFromNewPosts = finalArray();
+  let allNewPosts = postsFromNewPosts.concat(comment2);
+
+  localStorage.setItem("newPosts", JSON.stringify(allNewPosts));
+  window.location.reload(); //обновление страницы
   commentinput.value = "";
   titleСomment.value = "";
 
