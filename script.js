@@ -19,7 +19,8 @@ class Comment2 {
 }
 
 function finalArray() {
-  let getThatPost = localStorage.getItem("newPosts");
+  //let getThatPost = localStorage.getItem("newPosts");
+  let getThatPost = localStorage.getItem("postList");
   if (getThatPost != null) {
     let getThatPostParsed = JSON.parse(getThatPost);
     return getThatPostParsed;
@@ -41,12 +42,14 @@ async function main() {
   let rows = 7;
 
   if (gotThatPostParsed != null) {
-    allThePosts = gotThatPostParsed.concat(postsData);
+    //allThePosts = gotThatPostParsed.concat(postsData);
+    allThePosts = gotThatPostParsed;
   } else {
     allThePosts = postsData;
   }
 
   localStorage.setItem("postList", JSON.stringify(allThePosts));
+  allThePosts.sort().reverse();
   displayList(allThePosts, rows, currentPage);
   displayPagination(allThePosts, rows, currentPage);
 }
@@ -122,15 +125,18 @@ buttonPublish.addEventListener("click", function showMessage() {
   }
   //
 
-  const postsFromNewPosts = finalArray();
-
-  if (postsFromNewPosts != null) {
+  /*const postsFromNewPosts = finalArray();
+    if (postsFromNewPosts != null) {
     let allNewPosts = postsFromNewPosts.concat(comment2);
     localStorage.setItem("newPosts", JSON.stringify(allNewPosts));
   } else {
     newPosts.push(comment2);
     localStorage.setItem("newPosts", JSON.stringify(newPosts));
-  }
+  }*/
+  const postList = JSON.parse(localStorage.getItem("postList"));
+  postList.push(comment2);
+  localStorage.setItem("postList", JSON.stringify(postList));
+
 
   window.location.reload(); //обновление страницы
   commentinput.value = "";
@@ -140,9 +146,7 @@ buttonPublish.addEventListener("click", function showMessage() {
 });
 
 function getNewPostId(){
-  const newPostListLength = JSON.parse(localStorage.getItem("newPosts")).length;
-  const oldPostListLength = JSON.parse(localStorage.getItem("postList")).length;
-  // -1 - костыль, можно убрать, если будем хранить все данные в одном массиве
-  let length = newPostListLength + oldPostListLength - 1; 
+  const postList = JSON.parse(localStorage.getItem("postList"));
+  let length = postList.length; 
   return length;
 }
