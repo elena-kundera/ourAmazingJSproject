@@ -147,6 +147,7 @@ buttonPublish.addEventListener("click", function showMessage() {
 
 function getNewPostId(){
   const postList = JSON.parse(localStorage.getItem("postList"));
-  let length = postList.length; 
-  return length;
+  const length = postList.length; 
+  const newId = postList[length-1].id + 1;
+  return newId;
 }
