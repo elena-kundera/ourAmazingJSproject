@@ -51,7 +51,7 @@ function displayList(arrData, rowPerPage, page) {
     postElBody.innerText = `${el.body}`;
     postDate.innerText = getRandomDate();
     postDate.classList.add("post_date");
-    postUser.innerText = `${el.id}`;
+    postUser.innerText = `${el.userId}`;
     postUser.classList.add("post_user");
     more.innerText = "Подробнее";
     more.classList.add("button_more");
@@ -64,8 +64,7 @@ function displayList(arrData, rowPerPage, page) {
     let userData = localStorage.getItem("user");
     let username = JSON.parse(userData).firstname;
 
-    // 11 - id нашего пользователя. Подробнее в script.js
-    if (parseInt(el.userId) == 11) {
+        if (el.userId == username) {
       showDeletionButton(postsEl, el.id);
     } else {
       const deletionGap = document.createElement("div");
