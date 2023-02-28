@@ -10,10 +10,10 @@ function showDeletionButton(postsEl, postId) {
       closePopUp(postDetails);
     };
     close.innerText = "x";
-    close.classList.add("close");
+    close.classList.add("close-delete");
 
     const postDetailsBlock = document.createElement("div");
-    postDetailsBlock.setAttribute("class", "postDetailsBlock");
+    postDetailsBlock.setAttribute("class", "postDetailsBlockDelete");
     const postDetailsContent = document.createElement("div");
     postDetailsContent.setAttribute("class", "postDetailsContent");
     const postDetailsHeader = document.createElement("h2");

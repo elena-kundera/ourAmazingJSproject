@@ -46,7 +46,7 @@ body {
   text-align: center;
   padding: 10px;
   gap: 20px;
-  @media ((max-width: $tablet)) {
+  @media (max-width: $tablet) {
     display: none;
   }
 }
@@ -180,12 +180,12 @@ textarea:focus {
   outline: none;
 }
 
-.postDetailsBlock {
+.postDetailsBlock,
+.postDetailsBlockDelete {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
   max-width: 75%;
   max-height: 100%;
   display: flex;
@@ -195,14 +195,21 @@ textarea:focus {
   border-radius: 10px;
   overflow: auto;
   z-index: 1200;
+}
 
-  @media (orientation: landscape) {
-    margin-top: 2%;
-  }
+.postDetailsBlock {
+  width: 300px;
+  padding: 2% 7%;
+}
+
+.postDetailsBlockDelete {
+  width: 270px;
+  padding: 2% 3%;
 }
 
 .postDetailsHeader {
   font-size: 24px;
+  text-align: center;
 }
 
 .postDetailsBody {
@@ -210,28 +217,28 @@ textarea:focus {
   font-size: 20px;
 }
 
-.button_more {
-  padding: 5px;
-  margin: 10px auto;
-  background: $light-green;
-  border: $border;
-  border-radius: 3px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
+.button_more,
 .button_deletion {
   padding: 5px;
   margin: 10px auto;
-  background: $light-red;
-  border: $border;
   border-radius: 3px;
   font-size: 12px;
   cursor: pointer;
 }
 
+.button_more {
+  background: $light-green;
+  border: $border;
+}
+
+.button_deletion {
+  background: $light-red;
+  border: $border;
+}
+
 .close,
-#closeCommentsContainer {
+#closeCommentsContainer,
+.close-delete {
   font-size: 20px;
   font-weight: 700;
   opacity: 0.7;
@@ -239,17 +246,15 @@ textarea:focus {
 }
 
 .close {
-  margin-top: 10px;
-  margin-left: 100%;
+  text-align: right;
+  margin-right: 0;
 
   @media (min-width: $tablet) {
-    margin-top: 0;
-    margin-left: 120%;
+    margin-right: -20px;
   }
 
   @media (min-width: $desktop) {
-    margin-top: 0;
-    margin-left: 140%;
+    margin-right: -60px;
   }
 }
 
@@ -258,6 +263,15 @@ textarea:focus {
 
   @media (min-width: $tablet) {
     margin-left: 110%;
+  }
+}
+
+.close-delete {
+  text-align: right;
+  margin-right: 10px;
+
+  @media (min-width: $tablet) {
+    margin: 0;
   }
 }
 
