@@ -62,10 +62,14 @@ function displayList(arrData, rowPerPage, page) {
     postsEl.appendChild(more);
 
     let userData = localStorage.getItem("user");
-    let username = JSON.parse(userData).firstname;
-
-        if (el.userId == username) {
-      showDeletionButton(postsEl, el.id);
+    if (userData != null) {
+      let username = JSON.parse(userData).firstname;
+      if (el.userId == username) {
+        showDeletionButton(postsEl, el.id);
+      } else {
+        const deletionGap = document.createElement("div");
+        postsEl.appendChild(deletionGap);
+      }
     } else {
       const deletionGap = document.createElement("div");
       postsEl.appendChild(deletionGap);
