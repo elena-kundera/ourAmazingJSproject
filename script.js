@@ -19,7 +19,6 @@ class Comment2 {
 }
 
 function finalArray() {
-  //let getThatPost = localStorage.getItem("newPosts");
   let getThatPost = localStorage.getItem("postList");
   if (getThatPost != null) {
     let getThatPostParsed = JSON.parse(getThatPost);
@@ -42,7 +41,6 @@ async function main() {
   let rows = 7;
 
   if (gotThatPostParsed != null) {
-    //allThePosts = gotThatPostParsed.concat(postsData);
     allThePosts = gotThatPostParsed;
   } else {
     allThePosts = postsData;
@@ -106,10 +104,7 @@ buttonPublish.addEventListener("click", function showMessage() {
     body: commentinput.value,
     id: newPostId,
     title: titleСomment.value,
-    // 11 - потому что пользователей всего 10, наш будет 11-м. 
-    // Это не есть хорошо, но, чтобы исправить сие поведение, нужно запрашивать данные с сервера
-    // при регистрации пользователя и сохранять правильный id
-    userId: 11,
+    userId: obj.firstname,
   });
 
   //ввыводим ошибку
@@ -125,29 +120,20 @@ buttonPublish.addEventListener("click", function showMessage() {
   }
   //
 
-  /*const postsFromNewPosts = finalArray();
-    if (postsFromNewPosts != null) {
-    let allNewPosts = postsFromNewPosts.concat(comment2);
-    localStorage.setItem("newPosts", JSON.stringify(allNewPosts));
-  } else {
-    newPosts.push(comment2);
-    localStorage.setItem("newPosts", JSON.stringify(newPosts));
-  }*/
   const postList = JSON.parse(localStorage.getItem("postList"));
   postList.push(comment2);
   localStorage.setItem("postList", JSON.stringify(postList));
 
-
-  window.location.reload(); //обновление страницы
+  window.location.reload();
   commentinput.value = "";
   titleСomment.value = "";
 
   modalCommentsContainer.style.display = "none";
 });
 
-function getNewPostId(){
+function getNewPostId() {
   const postList = JSON.parse(localStorage.getItem("postList"));
-  const length = postList.length; 
-  const newId = postList[length-1].id + 1;
+  const length = postList.length;
+  const newId = postList[length - 1].id + 1;
   return newId;
 }
