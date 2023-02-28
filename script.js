@@ -137,3 +137,10 @@ function getNewPostId() {
   const newId = postList[length - 1].id + 1;
   return newId;
 }
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    postDetails.style.display = "none";
+    modalCommentsContainer.style.display = "none";
+  }
+});
