@@ -100,6 +100,7 @@ buttonRegistration.onclick = function (event) {
     modalcontainer.style.display = "none";
     buttonAddPost.style.display = "block";
     buttonModalOpen.style.display = "none";
+    window.location.reload();
   }
 };
 

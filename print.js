@@ -46,7 +46,7 @@ function displayList(arrData, rowPerPage, page) {
       postDetails.style.display = "block";
     };
     postEl.classList.add("post");
-    postEl.innerText = "Тема:   " + `${el.title}\r\n`;
+    postEl.innerText = `${el.title}\r\n`;
     postElBody.classList.add("post_body");
     postElBody.innerText = `${el.body}`;
     postDate.innerText = getRandomDate();
