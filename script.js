@@ -142,5 +142,6 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     postDetails.style.display = "none";
     modalCommentsContainer.style.display = "none";
+    modalClose();
   }
 });
