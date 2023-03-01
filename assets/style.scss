@@ -201,6 +201,7 @@ textarea {
   background-color: $background-field;
   margin: 10px auto;
   padding: 10px;
+  resize: none;
 }
 
 textarea:focus {

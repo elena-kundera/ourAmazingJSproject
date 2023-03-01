@@ -201,6 +201,7 @@ textarea {
   background-color: #f8f8f8;
   margin: 10px auto;
   padding: 10px;
+  resize: none;
 }
 
 textarea:focus {
