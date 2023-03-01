@@ -13,6 +13,8 @@ function displayList(arrData, rowPerPage, page) {
     const postDate = document.createElement("div");
     const postUser = document.createElement("div");
     const more = document.createElement("button");
+    const bottom = document.createElement("div");
+
     more.onclick = function () {
       disableScroll();
       const postDetails = document.querySelector("#postDetails");
@@ -32,7 +34,6 @@ function displayList(arrData, rowPerPage, page) {
       const postDetailsHeader = document.createElement("h2");
       postDetailsHeader.setAttribute("class", "postDetailsHeader");
       postDetailsHeader.innerText = `Тема: ${el.title}\r\n`;
-
       const postDetailsBody = document.createElement("p");
       postDetailsBody.setAttribute("class", "postDetailsBody");
       postDetailsBody.innerText = `Пост: ${el.body}`;
@@ -55,11 +56,14 @@ function displayList(arrData, rowPerPage, page) {
     postUser.classList.add("post_user");
     more.innerText = "Подробнее";
     more.classList.add("button_more");
+    bottom.setAttribute("class", "bottom");
+
     postsEl.appendChild(postDate);
     postsEl.appendChild(postUser);
     postsEl.appendChild(postEl);
     postsEl.appendChild(postElBody);
     postsEl.appendChild(more);
+    postElBody.appendChild(bottom);
 
     let userData = localStorage.getItem("user");
     if (userData != null) {

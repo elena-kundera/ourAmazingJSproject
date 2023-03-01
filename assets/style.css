@@ -87,6 +87,27 @@ body {
   text-align: center;
 }
 
+.post_body {
+  max-height: 60px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(210, 241, 246, 0.6), rgb(210, 241, 246));
+  height: 20px;
+}
+
+.read-more-button {
+  cursor: pointer;
+  display: inline-block;
+  color: #777;
+  text-decoration: underline;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
