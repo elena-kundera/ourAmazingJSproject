@@ -81,7 +81,7 @@ buttonRegistration.onclick = function (event) {
   checkValidity(firstpassword);
   validatePhone(phone);
 
-  let phoneFormat = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
+  let phoneFormat = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 
   if (
     user.firstname !== "" &&
