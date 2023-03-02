@@ -188,6 +188,7 @@ function modalClose() {
   modalcontainer.style.display = "none";
   buttonModalOpen.style.display = "block";
   enableScroll();
+  window.location.reload();
 }
 
 function modalOpen() {
