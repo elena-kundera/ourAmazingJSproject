@@ -5,6 +5,7 @@ const modalCommentsContainer = document.querySelector(
 const buttonPublish = document.querySelector("#buttonPublish");
 const commentinput = document.getElementById("commentinput");
 const titleСomment = document.getElementById("titleСomment");
+const userExit = document.querySelector(".user-exit");
 let obj = JSON.parse(localStorage.getItem("user"));
 let today = new Date();
 let newPosts = [];
@@ -144,4 +145,9 @@ document.addEventListener("keydown", function (e) {
     modalCommentsContainer.style.display = "none";
     modalClose();
   }
+});
+
+userExit.addEventListener("click", function () {
+  localStorage.removeItem("user");
+  window.location.reload();
 });
