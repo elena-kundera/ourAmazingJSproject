@@ -1,6 +1,7 @@
 function showDeletionButton(postsEl, postId) {
-  const deletion = document.createElement("button");
-  deletion.innerText = "Удалить";
+  const deletion = document.createElement("img");
+  deletion.setAttribute("class", "img-deletion");
+  deletion.setAttribute("src", "assets/images/delete.png");
   deletion.onclick = function () {
     disableScroll();
     const postDetails = document.querySelector("#postDetails");
@@ -46,7 +47,7 @@ function showDeletionButton(postsEl, postId) {
 
     postDetails.style.display = "block";
   };
-  deletion.classList.add("button_deletion");
+
   postsEl.appendChild(deletion);
 }
 
