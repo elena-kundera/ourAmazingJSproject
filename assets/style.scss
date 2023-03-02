@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 15px;
 }
 
 #username {
@@ -19,8 +20,13 @@ body {
   color: $green;
 }
 
-.user-icon {
+.user-icon,
+.user-exit {
   width: 20px;
+}
+
+.user-exit {
+  cursor: pointer;
 }
 
 .container {
