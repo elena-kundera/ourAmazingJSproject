@@ -19,6 +19,34 @@ const buttonAddPost = document.querySelector("#buttonAddPost");
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");
 
+class Form {
+  static patternName = /^[а-яёА-ЯЁ\s]+$/;
+  static patternMail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+  static patternPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+  static patternFirstpassword =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#!$@%^&*_+~=:;?\/])[-\w#!$@%^&*+~=:;?\/]{8,}$/;
+  static errorMessage = [
+    "Поле не заполнено", // 0
+    "Введите Ваше реальное имя", // 1
+    "Неверный формат адреса электронной почты", // 2
+    "Пароль должен содержать от 8 до 20 символов, минимум одну цифру, буквы в верхем и нижнем регистре и символы", // 3
+    "Пароль не совпадает", // 4
+    "Такого числа в месяце не бывает", // 5
+    "Год должен содежать только реальные цифры в формате 'xxxx'", // 6
+    "Номер телефона указан неверно", // 7
+  ];
+
+  constructor(form) {
+    this.form = form;
+    this.fields = this.form.querySelectorAll(".field");
+    this.buttonRegistration = this.document.querySelector(
+      ".buttonRegistration"
+    );
+    this.iserror = false;
+    this.registerEventsHandler();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (userData !== null) {
     username.innerHTML = JSON.parse(userData).firstname;
@@ -52,22 +80,14 @@ buttonRegistration.onclick = function (event) {
 
   for (let i = 0; i < fields.length; i++) {
     if (fields[i].value == "") {
-      let error = generateError("Поле не заполнено");
+      let error = generateError(Form.errorMessage[0]);
       fields[i].after(error);
     }
   }
 
-  if (user.firstname !== "") {
-    firstname.style.border = "green solid 1px";
-  }
-
-  if (user.lastname !== "") {
-    lastname.style.border = "green solid 1px";
-  }
-
   if (firstpassword.value !== "") {
     if (secondpassword.value !== firstpassword.value) {
-      let error = generateError("Пароль не совпадает");
+      let error = generateError(Form.errorMessage[4]);
       secondpassword.after(error);
       secondpassword.style.border = "red solid 1px";
     } else {
@@ -75,13 +95,13 @@ buttonRegistration.onclick = function (event) {
     }
   }
 
-  validateDay(day);
-  validateYear(year);
-  validateEmail(email);
-  checkValidity(firstpassword);
-  validatePhone(phone);
-
-  let phoneFormat = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+  validateName(firstname);
+  validateName(lastname);
+  validateDay();
+  validateYear();
+  validateEmail();
+  validateFirstpassword();
+  validatePhone();
 
   if (
     user.firstname !== "" &&
@@ -93,7 +113,7 @@ buttonRegistration.onclick = function (event) {
     user.month !== "" &&
     user.year !== "" &&
     user.phone !== "" &&
-    user.phone.match(phoneFormat)
+    user.phone.match(Form.patternPhone)
   ) {
     localStorage.setItem("user", JSON.stringify(user));
     alert("Регистрация прошла успешно!");
@@ -111,73 +131,78 @@ function generateError(text) {
   return error;
 }
 
-function checkValidity(firstpassword) {
+function validateName(name) {
+  if (name.value !== "") {
+    if (name.value.match(Form.patternName)) {
+      name.style.border = "green solid 1px";
+      return true;
+    } else {
+      let error = generateError(Form.errorMessage[1]);
+      name.after(error);
+      name.style.border = "red solid 1px";
+    }
+  }
+}
+
+function validateFirstpassword() {
   if (firstpassword.value !== "") {
-    let firstpasswordFormat =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#!$@%^&*_+~=:;?\/])[-\w#!$@%^&*+~=:;?\/]{8,}$/;
-    if (firstpassword.value.match(firstpasswordFormat)) {
+    if (firstpassword.value.match(Form.patternFirstpassword)) {
       firstpassword.style.border = "green solid 1px";
       return true;
     } else {
-      let error = generateError(
-        "Пароль должен содержать от 8 до 20 символов, минимум одну цифру, буквы в верхем и нижнем регистре и символы"
-      );
+      let error = generateError(Form.errorMessage[3]);
       firstpassword.after(error);
       firstpassword.style.border = "red solid 1px";
     }
   }
 }
 
-function validateDay(day) {
-  if (day.value !== "") {
-    if (day.value >= 1 && day.value <= 31) {
-      day.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError("Такого числа в месяце не бывает");
-      day.after(error);
-      day.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validateYear(year) {
-  if (year.value !== "") {
-    if (year.value >= 1923 && year.value <= 2023) {
-      year.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError(
-        "Год должен содежать только реальные цифры в формате 'xxxx'"
-      );
-      year.after(error);
-      year.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validateEmail(email) {
+function validateEmail() {
   if (email.value !== "") {
-    let mailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
-    if (email.value.match(mailFormat)) {
+    if (email.value.match(Form.patternMail)) {
       email.style.border = "green solid 1px";
       return true;
     } else {
-      let error = generateError("Неверный формат адреса электронной почты");
+      let error = generateError(Form.errorMessage[2]);
       email.after(error);
       email.style.border = "red solid 1px";
     }
   }
 }
 
-function validatePhone(phone) {
+function validateDay() {
+  if (day.value !== "") {
+    if (day.value >= 1 && day.value <= 31) {
+      day.style.border = "green solid 1px";
+      return true;
+    } else {
+      let error = generateError(Form.errorMessage[5]);
+      day.after(error);
+      day.style.border = "red solid 1px";
+    }
+  }
+}
+
+function validateYear() {
+  if (year.value !== "") {
+    if (year.value >= 1923 && year.value <= 2023) {
+      year.style.border = "green solid 1px";
+      return true;
+    } else {
+      let error = generateError(Form.errorMessage[6]);
+      year.after(error);
+      year.style.border = "red solid 1px";
+    }
+  }
+}
+
+function validatePhone() {
   if (phone.value !== "") {
-    let phoneFormat = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-    if (phone.value.match(phoneFormat)) {
+    if (phone.value.match(Form.patternPhone)) {
       phone.style.border = "green solid 1px";
       return true;
     } else {
-      let error = generateError("Номер телефона указан неверно");
+      let error = generateError(Form.errorMessage[7]);
       phone.after(error);
       phone.style.border = "red solid 1px";
     }
