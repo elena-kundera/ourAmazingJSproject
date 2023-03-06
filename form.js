@@ -18,7 +18,6 @@ const buttonAddPost = document.querySelector("#buttonAddPost");
 
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");
-
 class Form {
   static patternName = /^[а-яёА-ЯЁ\s]+$/;
   static patternMail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
@@ -35,16 +34,6 @@ class Form {
     "Год должен содежать только реальные цифры в формате 'xxxx'", // 6
     "Номер телефона указан неверно", // 7
   ];
-
-  constructor(form) {
-    this.form = form;
-    this.fields = this.form.querySelectorAll(".field");
-    this.buttonRegistration = this.document.querySelector(
-      ".buttonRegistration"
-    );
-    this.iserror = false;
-    this.registerEventsHandler();
-  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -73,9 +62,9 @@ buttonRegistration.onclick = function (event) {
     phone: phone.value,
   };
 
-  let errors = document.querySelectorAll(".errorMessage");
-  for (let i = 0; i < errors.length; i++) {
-    errors[i].remove();
+  let errorMessage = document.querySelectorAll(".errorMessage");
+  for (let i = 0; i < errorMessage.length; i++) {
+    errorMessage[i].remove();
   }
 
   for (let i = 0; i < fields.length; i++) {
@@ -85,23 +74,14 @@ buttonRegistration.onclick = function (event) {
     }
   }
 
-  if (firstpassword.value !== "") {
-    if (secondpassword.value !== firstpassword.value) {
-      let error = generateError(Form.errorMessage[4]);
-      secondpassword.after(error);
-      secondpassword.style.border = "red solid 1px";
-    } else {
-      secondpassword.style.border = "green solid 1px";
-    }
-  }
-
-  validateName(firstname);
-  validateName(lastname);
-  validateDay();
-  validateYear();
-  validateEmail();
-  validateFirstpassword();
-  validatePhone();
+  Validate(firstname, Form.patternName, Form.errorMessage[1]);
+  Validate(lastname, Form.patternName, Form.errorMessage[1]);
+  Validate(firstpassword, Form.patternFirstpassword, Form.errorMessage[3]);
+  Validate(email, Form.patternMail, Form.errorMessage[2]);
+  Validate(phone, Form.patternPhone, Form.errorMessage[7]);
+  validateNumber(day, 1, 31, Form.errorMessage[5]);
+  validateNumber(year, 1923, 2023, Form.errorMessage[6]);
+  validateSecondpassword();
 
   if (
     user.firstname !== "" &&
@@ -131,80 +111,40 @@ function generateError(text) {
   return error;
 }
 
-function validateName(name) {
-  if (name.value !== "") {
-    if (name.value.match(Form.patternName)) {
-      name.style.border = "green solid 1px";
+function Validate(object, pattern, errorMessage) {
+  if (object.value !== "") {
+    if (object.value.match(pattern)) {
+      object.style.border = "green solid 1px";
       return true;
     } else {
-      let error = generateError(Form.errorMessage[1]);
-      name.after(error);
-      name.style.border = "red solid 1px";
+      let error = generateError(errorMessage);
+      object.after(error);
+      object.style.border = "red solid 1px";
     }
   }
 }
 
-function validateFirstpassword() {
+function validateNumber(object, numberOne, numberTwo, errorMessage) {
+  if (object.value !== "") {
+    if (object.value >= numberOne && object.value <= numberTwo) {
+      object.style.border = "green solid 1px";
+      return true;
+    } else {
+      let error = generateError(errorMessage);
+      object.after(error);
+      object.style.border = "red solid 1px";
+    }
+  }
+}
+
+function validateSecondpassword() {
   if (firstpassword.value !== "") {
-    if (firstpassword.value.match(Form.patternFirstpassword)) {
-      firstpassword.style.border = "green solid 1px";
-      return true;
+    if (secondpassword.value !== firstpassword.value) {
+      let error = generateError(Form.errorMessage[4]);
+      secondpassword.after(error);
+      secondpassword.style.border = "red solid 1px";
     } else {
-      let error = generateError(Form.errorMessage[3]);
-      firstpassword.after(error);
-      firstpassword.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validateEmail() {
-  if (email.value !== "") {
-    if (email.value.match(Form.patternMail)) {
-      email.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError(Form.errorMessage[2]);
-      email.after(error);
-      email.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validateDay() {
-  if (day.value !== "") {
-    if (day.value >= 1 && day.value <= 31) {
-      day.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError(Form.errorMessage[5]);
-      day.after(error);
-      day.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validateYear() {
-  if (year.value !== "") {
-    if (year.value >= 1923 && year.value <= 2023) {
-      year.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError(Form.errorMessage[6]);
-      year.after(error);
-      year.style.border = "red solid 1px";
-    }
-  }
-}
-
-function validatePhone() {
-  if (phone.value !== "") {
-    if (phone.value.match(Form.patternPhone)) {
-      phone.style.border = "green solid 1px";
-      return true;
-    } else {
-      let error = generateError(Form.errorMessage[7]);
-      phone.after(error);
-      phone.style.border = "red solid 1px";
+      secondpassword.style.border = "green solid 1px";
     }
   }
 }
