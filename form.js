@@ -18,8 +18,9 @@ const buttonAddPost = document.querySelector("#buttonAddPost");
 
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");
+let errorMessage = document.querySelectorAll(".errorMessage");
 class Form {
-  static patternName = /^[а-яёА-ЯЁ\s]+$/;
+  static patternName = /^([а-яё]{3,15}|[a-z]{3,15})$/;
   static patternMail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
   static patternPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
   static patternFirstpassword =
@@ -62,26 +63,11 @@ buttonRegistration.onclick = function (event) {
     phone: phone.value,
   };
 
-  let errorMessage = document.querySelectorAll(".errorMessage");
-  for (let i = 0; i < errorMessage.length; i++) {
-    errorMessage[i].remove();
-  }
-
   for (let i = 0; i < fields.length; i++) {
     if (fields[i].value == "") {
-      let error = generateError(Form.errorMessage[0]);
-      fields[i].after(error);
+      errorMessage[i].innerHTML = Form.errorMessage[0];
     }
   }
-
-  Validate(firstname, Form.patternName, Form.errorMessage[1]);
-  Validate(lastname, Form.patternName, Form.errorMessage[1]);
-  Validate(firstpassword, Form.patternFirstpassword, Form.errorMessage[3]);
-  Validate(email, Form.patternMail, Form.errorMessage[2]);
-  Validate(phone, Form.patternPhone, Form.errorMessage[7]);
-  validateNumber(day, 1, 31, Form.errorMessage[5]);
-  validateNumber(year, 1923, 2023, Form.errorMessage[6]);
-  validateSecondpassword();
 
   if (
     user.firstname !== "" &&
@@ -104,21 +90,14 @@ buttonRegistration.onclick = function (event) {
   }
 };
 
-function generateError(text) {
-  let error = document.createElement("div");
-  error.setAttribute("class", "errorMessage");
-  error.innerHTML = text;
-  return error;
-}
-
 function Validate(object, pattern, errorMessage) {
   if (object.value !== "") {
     if (object.value.match(pattern)) {
       object.style.border = "green solid 1px";
+      object.nextElementSibling.innerHTML = "";
       return true;
     } else {
-      let error = generateError(errorMessage);
-      object.after(error);
+      object.nextElementSibling.innerHTML = errorMessage;
       object.style.border = "red solid 1px";
     }
   }
@@ -127,27 +106,74 @@ function Validate(object, pattern, errorMessage) {
 function validateNumber(object, numberOne, numberTwo, errorMessage) {
   if (object.value !== "") {
     if (object.value >= numberOne && object.value <= numberTwo) {
+      object.nextElementSibling.innerHTML = "";
       object.style.border = "green solid 1px";
       return true;
     } else {
-      let error = generateError(errorMessage);
-      object.after(error);
+      object.nextElementSibling.innerHTML = errorMessage;
       object.style.border = "red solid 1px";
     }
+  }
+}
+
+function validateSelect(object, errorMessage) {
+  if (object.value !== "") {
+    object.style.border = "green solid 1px";
+    object.nextElementSibling.innerHTML = "";
+    return true;
+  } else {
+    object.nextElementSibling.innerHTML = errorMessage;
+    object.style.border = "red solid 1px";
   }
 }
 
 function validateSecondpassword() {
   if (firstpassword.value !== "") {
     if (secondpassword.value !== firstpassword.value) {
-      let error = generateError(Form.errorMessage[4]);
-      secondpassword.after(error);
+      secondpassword.nextElementSibling.innerHTML = Form.errorMessage[4];
       secondpassword.style.border = "red solid 1px";
     } else {
+      secondpassword.nextElementSibling.innerHTML = "";
       secondpassword.style.border = "green solid 1px";
     }
   }
 }
+
+firstname.addEventListener("input", function () {
+  Validate(firstname, Form.patternName, Form.errorMessage[1]);
+});
+
+lastname.addEventListener("input", function () {
+  Validate(lastname, Form.patternName, Form.errorMessage[1]);
+});
+
+email.addEventListener("input", function () {
+  Validate(email, Form.patternMail, Form.errorMessage[2]);
+});
+
+firstpassword.addEventListener("input", function () {
+  Validate(firstpassword, Form.patternFirstpassword, Form.errorMessage[3]);
+});
+
+secondpassword.addEventListener("input", function () {
+  validateSecondpassword();
+});
+
+day.addEventListener("input", function () {
+  validateNumber(day, 1, 31, Form.errorMessage[5]);
+});
+
+month.addEventListener("input", function () {
+  validateSelect(month, Form.errorMessage[0]);
+});
+
+year.addEventListener("input", function () {
+  validateNumber(year, 1923, 2023, Form.errorMessage[6]);
+});
+
+phone.addEventListener("input", function () {
+  Validate(phone, Form.patternPhone, Form.errorMessage[7]);
+});
 
 function modalClose() {
   modalcontainer.style.display = "none";
