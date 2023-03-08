@@ -33,6 +33,7 @@
                     class="field"
                     required
                   />
+                  <div class="errorMessage"></div>
                 </div>
                 <div class="blocks-position">
                   <label for="lastname"></label>
@@ -43,11 +44,13 @@
                     class="field"
                     required
                   />
+                  <div class="errorMessage"></div>
                 </div>
               </div>
               <p class="text">Адрес электронной почты</p>
               <label for="mail"></label>
-              <input type="email" id="mail" class="field" required /><br />
+              <input type="email" id="mail" class="field" required />
+              <div class="errorMessage"></div>
               <p class="text">Придумайте пароль</p>
               <input
                 type="password"
@@ -55,6 +58,7 @@
                 class="field"
                 required
               />
+              <div class="errorMessage"></div>
               <p class="text">Подтвердите пароль</p>
               <input
                 type="password"
@@ -62,6 +66,7 @@
                 class="field"
                 required
               />
+              <div class="errorMessage"></div>
               <p class="text">Дата рождения</p>
               <div class="blocks">
                 <div class="blocks-position">
@@ -75,6 +80,7 @@
                     placeholder="день"
                     class="field"
                   />
+                  <div class="errorMessage"></div>
                 </div>
                 <div class="blocks-position">
                   <select class="list-text field" name="month" id="month">
@@ -92,6 +98,7 @@
                     <option value="november">Ноябрь</option>
                     <option value="december">Декабрь</option>
                   </select>
+                  <div class="errorMessage"></div>
                 </div>
                 <div class="blocks-position">
                   <label for="year"></label>
@@ -102,6 +109,7 @@
                     maxlength="4"
                     class="field"
                   />
+                  <div class="errorMessage"></div>
                 </div>
               </div>
               <p class="text">Мобильный телефон</p>
@@ -113,6 +121,7 @@
                 maxlength="30"
                 class="field"
               />
+              <div class="errorMessage"></div>
               <button type="submit" class="buttonRegistration">
                 Зарегистрироваться
               </button>
