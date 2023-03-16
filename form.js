@@ -19,6 +19,8 @@ const buttonAddPost = document.querySelector("#buttonAddPost");
 const modalcontainer = document.querySelector("#modalcontainer");
 let userData = localStorage.getItem("user");
 let errorMessage = document.querySelectorAll(".errorMessage");
+let empty;
+
 class Form {
   static patternName = /^([а-яё]{3,15}|[a-z]{3,15})$/;
   static patternMail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
@@ -69,18 +71,13 @@ buttonRegistration.onclick = function (event) {
     }
   }
 
-  if (
-    user.firstname !== "" &&
-    user.lastname !== "" &&
-    user.email !== "" &&
-    user.firstpassword !== "" &&
-    user.secondpassword !== "" &&
-    user.day !== "" &&
-    user.month !== "" &&
-    user.year !== "" &&
-    user.phone !== "" &&
-    user.phone.match(Form.patternPhone)
-  ) {
+  for (let key in user) {
+    if (!user[key]) {
+      return (empty = false);
+    }
+  }
+
+  if ((empty = true) && user.phone.match(Form.patternPhone)) {
     localStorage.setItem("user", JSON.stringify(user));
     alert("Регистрация прошла успешно!");
     modalcontainer.style.display = "none";
